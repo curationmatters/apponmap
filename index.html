@@ -68,20 +68,42 @@
     color: black;
   }
 
-  /* Style the footer */
-  footer {
-    background-color: palegoldenrod;
-    padding: 6px;
-  }
+  #contentarea {
+    width: 100%
+    position: static;
+    padding: 0px;
+  }  
     
   #maparea {
-      position: static;
-      top: 0;
-      bottom: 0;
-      width: 100%;
-      height: 600px;
-      xmin-width: 600px;
-      xmin-height: 400px;
+    float: left;
+    width: 70%;
+    height: 600px; /*leaflet requires fixed height*/
+    min-width: 600px;  /*not sure I need this min*/
+  }
+    
+  #interparea {
+    float: left;
+    width: 30%;
+    min-width: 200px; /* not sure I need this min*/
+    max-width: 400px;
+    border-left: 4px;
+    border-left-color: white;
+  }
+    
+  #boundbox {
+      position: absolute;
+      left: 60px;
+      top: 200px;
+      z-index: 1000;
+      background: whitesmoke;
+      padding: 8px 12px;
+  }
+    
+  /* Style the footer */
+  footer {
+    position: static;
+    background-color: palegoldenrod;
+    padding: 6px;
   }
     
   </style>
@@ -102,21 +124,40 @@
     <a href="#">Link3</a>
   </section>
   
-  <section id="maparea"></section>
+  <section id="contentarea">
+    <section id="maparea"></section>
+    <section id="interparea">This is the Interpration Area</section>
+  </section>
+  
+  <div id="boundbox">
+      Current bounds: 
+  <div id="current-bounds"></div>
+  </div>
     
   <footer id="pagefooter">
     <p>Footer</p>
   </footer>
   
-  <!-- scripts begin here -->
+  <!-- scripts begin here ----------------------------------- -->
   <!-- link to leaflet.js library -->
   <script
-      src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
       integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
       crossorigin="">
   </script>
-  <!-- link to leaflet-IIIf library -->
-  <script src="https://cdn.rawgit.com/mejackreed/Leaflet-IIIF/v3.0.0/leaflet-iiif.js">
+  
+  <!-- link to leaflet libraries -->
+  <script 
+    src="https://cdn.rawgit.com/mejackreed/Leaflet-IIIF/v3.0.0/leaflet-iiif.js">
+  </script>
+  
+  <!--defined various constants and variables -->
+  <script>
+    const bereaPt = L.latLng(37.576944, -84.293611);
+    const bereaLbl = "Berea, Ky.";
+    const latcheePt = L.latLng(29.725278, -84.9925);
+    const latcheeLbl = "The Apalachee";
+    
   </script>
   
   <!-- use leaflet to build the map -->
@@ -125,19 +166,34 @@
       const map = L.map("maparea", {
         center: [37.5, -98.57],
         // crs: L.CRS.Simple,
-        zoom: 4.5,
+        zoom: 5,
       });
     
     // add the base tile layer
     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}', {
-        attribution: 'Tiles &copy; Esri &mdash; Source: Esri'
-    }).addTo(map);
+        attribution: 'Tiles &copy; Esri &mdash; Source: Esri',
+        maxZoom: 9, minZoom: 4
+      }).addTo(map);
 
-    // create a point marker
-    L.marker([37.576944, -84.293611]).addTo(map)
-        .bindPopup('Berea, Kentucky.')
-        .openPopup();
-      </script>
+    // convienence function to use for determining coords of current view
+    // should be removed for final deliverable
+      map.on("moveend", () => {
+        // returns 'southwest_lng,southwest_lat,northeast_lng,northeast_lat' of current view
+        const currentBounds = map.getBounds().toBBoxString();
+
+        // output current bounds to screen
+        document.getElementById("current-bounds").innerText = currentBounds;
+      });
+    
+    // Place Berea KY Point Marker
+    const bereaSym = L.marker(bereaPt).addTo(map)
+        .bindPopup(bereaLbl)
+        //.openPopup();
+    
+    // Place Appalachee Point Marker
+    const latcheeSym = L.marker(latcheePt).addTo(map)
+      .bindPopup(latcheeLbl)
+  </script>
 
 </body>
 </html>
