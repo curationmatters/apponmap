@@ -35,6 +35,11 @@
     text-align: center;
   }
 
+  header p {
+    color: black;
+    text-align: center;
+  }
+    
   body {
     margin: 10px;
   }
@@ -87,9 +92,9 @@
     min-width: 200px; /* not sure I need this min*/
     max-width: 400px;
     height: 600px; /*leaflet requires fixed height*/
-    overflow-y: auto
-    border-left: 4px;
-    border-left-color: white;
+    overflow-y: auto;
+    padding: 6px;
+
   }
     
   #boundbox {
@@ -98,15 +103,20 @@
       top: 200px;
       z-index: 1000;
       background: whitesmoke;
-      padding: 8px 12px;
+      padding: 8px;
   }
     
   /* Style the footer */
   footer {
     position: static;
-    background-color: palegoldenrod;
+    background-color: darkseagreen;
     padding: 6px;
-  }
+    }
+    
+  footer p {
+    font-size: small;
+    color: white;
+    }
     
   </style>
 
@@ -128,7 +138,10 @@
   
   <section id="contentarea">
     <section id="maparea"></section>
-    <section id="interparea">This is the Interpretation Area</section>
+    <section id="interparea">
+      <h3>This is the Interpretation Area</h3>
+      <p>This is some of the text in that area. I like to write some text, it appears here all the time.  And when I write a lot of it, I don't know how to rhyme.</p>
+    </section>
   </section>
   
   <div id="boundbox">
@@ -137,7 +150,7 @@
   </div>
     
   <footer id="pagefooter">
-    <p>Footer</p>
+    <p>Produced by Chistopher Miller, Berea College, University of Kentucky</p>
   </footer>
   
   <!-- scripts begin here ----------------------------------- -->
@@ -155,20 +168,24 @@
   
   <!--defined various constants and variables -->
   <script>
+    const InitZoom = 4.7;
+    const InitCtrPt = L.latLng(38, -88);
+    const InitZmSnp = 0.1;
+    const MaxBounds = L.latLngBounds(L.latLng(20, -130),L.latLng(50, -54));
+    
     const bereaPt = L.latLng(37.576944, -84.293611);
     const bereaLbl = "Berea, Ky.";
     const latcheePt = L.latLng(29.725278, -84.9925);
     const latcheeLbl = "The Apalachee";
-    
-  </script>
   
   <!-- use leaflet to build the map -->
-  <script>
      // create map instance
       const map = L.map("maparea", {
-        center: [37.5, -98.57],
+        center: InitCtrPt,
         // crs: L.CRS.Simple,
-        zoom: 5,
+        zoomSnap: InitZmSnp,
+        zoom: InitZoom,
+        maxBounds: MaxBounds,
       });
     
     // add the base tile layer
@@ -181,7 +198,7 @@
     // should be removed for final deliverable
       map.on("moveend", () => {
         // returns 'southwest_lng,southwest_lat,northeast_lng,northeast_lat' of current view
-        const currentBounds = map.getBounds().toBBoxString();
+        var currentBounds = map.getBounds().toBBoxString();
 
         // output current bounds to screen
         document.getElementById("current-bounds").innerText = currentBounds;
@@ -189,12 +206,12 @@
     
     // Place Berea KY Point Marker
     const bereaSym = L.marker(bereaPt).addTo(map)
-        .bindPopup(bereaLbl)
+        .bindTooltip(bereaLbl)
         //.openPopup();
     
     // Place Appalachee Point Marker
     const latcheeSym = L.marker(latcheePt).addTo(map)
-      .bindPopup(latcheeLbl)
+      .bindTooltip(latcheeLbl)
   </script>
 
 </body>
