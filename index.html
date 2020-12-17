@@ -15,7 +15,7 @@
     crossorigin=""
   />
   
-  <!--THIS IS THE STYLE SHEET AREA-->
+  <!--THIS IS THE CSS AREA -------------------------- -->
   <style>
   * {
     box-sizing: border-box;
@@ -96,21 +96,40 @@
     padding: 6px;
 
   }
-    
+/*these are temporary objects just for development*/
   #boundbox {
       position: absolute;
-      left: 60px;
-      top: 200px;
+      left: 10px;
+      top: 810px;
       z-index: 1000;
       background: whitesmoke;
       padding: 8px;
   }
     
+  #centerbox {
+      position: absolute;
+      right: 300px;
+      top: 810px;
+      z-index: 1000;
+      background: whitesmoke;
+      padding: 8px;
+  }  
+
+  #zoombox {
+      position: absolute;
+      right: 60px;
+      top: 810px;
+      z-index: 1000;
+      background: whitesmoke;
+      padding: 8px;
+  } 
+    
   /* Style the footer */
   footer {
     position: static;
     background-color: darkseagreen;
-    padding: 6px;
+    box-sizing: border-box;
+    padding: 8px;
     }
     
   footer p {
@@ -145,12 +164,22 @@
   </section>
   
   <div id="boundbox">
-      Current bounds: 
+      Bounds: 
   <div id="current-bounds"></div>
+  </div>
+  
+  <div id="centerbox">
+      Center: 
+  <div id="current-center"></div>
+  </div>
+  
+  <div id="zoombox">
+      Zoom: 
+  <div id="current-zoom"></div>
   </div>
     
   <footer id="pagefooter">
-    <p>Produced by Chistopher Miller, Berea College, University of Kentucky</p>
+    <p>Curated by Christopher Miller, Appalachian Center, Berea College and College of Communication &amp; Information, University of Kentucky, 2020. Contact millerc@berea.edu</p>
   </footer>
   
   <!-- scripts begin here ----------------------------------- -->
@@ -161,29 +190,37 @@
       crossorigin="">
   </script>
   
-  <!-- link to leaflet libraries -->
+  <!-- link to leaflet IIIf library -->
   <script 
     src="https://cdn.rawgit.com/mejackreed/Leaflet-IIIF/v3.0.0/leaflet-iiif.js">
   </script>
   
   <!--defined various constants and variables -->
   <script>
-    const InitZoom = 4.7;
+  // initialize map properties constants
+    const InitZoom = 4.7, InitZmSnp = 0.1;
     const InitCtrPt = L.latLng(38, -88);
-    const InitZmSnp = 0.1;
     const MaxBounds = L.latLngBounds(L.latLng(20, -130),L.latLng(50, -54));
+  // initialize maper propert varaibles 
+    var currentBounds = MaxBounds, currentZoom = InitZoom, currentCenter = InitCtrPt;
+    var currentBoundsStr = currentBounds.toBBoxString();
+  // Initialize Interpretion Items List
+    const frostPt = L.latLng(37.576944, -84.293611), frostLbl = "William G. Frost";
+    const latcheePt = L.latLng(29.725278, -84.9925), latcheeLbl = "The Apalachee";
     
-    const bereaPt = L.latLng(37.576944, -84.293611);
-    const bereaLbl = "Berea, Ky.";
-    const latcheePt = L.latLng(29.725278, -84.9925);
-    const latcheeLbl = "The Apalachee";
-  
-  <!-- use leaflet to build the map -->
+  // output Initial bounds to screen
+  // should be removed for final deliverable
+        document.getElementById("current-bounds").innerText = currentBoundsStr;
+        document.getElementById("current-zoom").innerText = currentZoom;
+        document.getElementById("current-center").innerText = currentCenter; 
+    
+  // use leaflet to build the map
      // create map instance
       const map = L.map("maparea", {
         center: InitCtrPt,
         // crs: L.CRS.Simple,
         zoomSnap: InitZmSnp,
+        zoomDelta: 0.2,
         zoom: InitZoom,
         maxBounds: MaxBounds,
       });
@@ -194,24 +231,30 @@
         maxZoom: 9, minZoom: 4
       }).addTo(map);
 
-    // convienence function to use for determining coords of current view
+    // convienence function to show current map status
     // should be removed for final deliverable
       map.on("moveend", () => {
-        // returns 'southwest_lng,southwest_lat,northeast_lng,northeast_lat' of current view
-        var currentBounds = map.getBounds().toBBoxString();
-
+        currentBoundsStr = map.getBounds().toBBoxString();
+        currentCenter = map.getCenter();        
+        currentZoom = map.getZoom();
         // output current bounds to screen
-        document.getElementById("current-bounds").innerText = currentBounds;
+        document.getElementById("current-bounds").innerText = currentBoundsStr;
+        document.getElementById("current-zoom").innerText = currentZoom;
+        document.getElementById("current-center").innerText = currentCenter;
       });
     
-    // Place Berea KY Point Marker
-    const bereaSym = L.marker(bereaPt).addTo(map)
-        .bindTooltip(bereaLbl)
-        //.openPopup();
+    // Place Markers, Create Layer 
+    // Place William G. Frost 1890s Point Marker
+    const frostSym = L.marker(frostPt).addTo(map)
+        .bindTooltip(frostLbl);
     
-    // Place Appalachee Point Marker
+    // Place Apalachee 1500s Point Marker
     const latcheeSym = L.marker(latcheePt).addTo(map)
-      .bindTooltip(latcheeLbl)
+        .bindTooltip(latcheeLbl);
+    
+    // Place Proclamation of 1763 
+    
+    // Place 
   </script>
 
 </body>
