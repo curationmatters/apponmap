@@ -86,16 +86,26 @@
     min-width: 600px;  /*not sure I need this min*/
   }
     
-  #interparea {
+  .interp {
     float: left;
     width: 30%;
     min-width: 200px; /* not sure I need this min*/
     max-width: 400px;
     height: 600px; /*leaflet requires fixed height*/
     overflow-y: auto;
-    padding: 6px;
-
+    padding: 0px 12px 2px;
   }
+  
+  .interp h3 {
+      color: maroon;
+      text-align: center;
+  }
+    
+    .interp p {
+      font-size: 11pt;
+      line-height: 1.5;
+    }
+    
 /*these are temporary objects just for development*/
   #boundbox {
       position: absolute;
@@ -144,40 +154,36 @@
 <!--BEGIN THE BODY ------------------------------------- -->
 <body>
   <header id="pageheader">
-    <h2 id="headertitle">Putting App on the Map: A Critical Cartographic Exporation of Appalachia
-      </h2>
+    <h2 id="headertitle">Putting App on the Map: A Critical Cartographic Exporation of Appalachia</h2>
     <p id="headerbody">This is the header body text always on the screen</p>
   </header>
   
+  <!-- Creates the Navigation bar -->
   <section class="topnav">
     <a href="#">Beginning</a>
     <a href="#">Link2</a>
     <a href="#">Link3</a>
   </section>
   
+  <!-- Creates the main content area consisting of left and right panes -->
   <section id="contentarea">
+    <!-- This is the left pane where the map resides -->
     <section id="maparea"></section>
-    <section id="interparea">
-      <h3>This is the Interpretation Area</h3>
-      <p>This is some of the text in that area. I like to write some text, it appears here all the time.  And when I write a lot of it, I don't know how to rhyme.</p>
-    </section>
+    <!-- This is the right pane wher the interpretation resides -->
+    <section class="interp" id="interparea">
+      <h3 id="interphead">What &amp; Where is Appalachia?</h3>
+      <div id="interpbody">
+      <p>To most people Appalachia is a fuzzy region of the  eastern U.S. People typically think it exists but if you ask 10 people what and were Appalachia is, you will probably get 10 different answers.</p> 
+      <p>This interactive map explores some of the historical, and especially cartographic, events that have contributed to the creation of this tangible, yet elusive region.</p>
+      </div>
   </section>
   
-  <div id="boundbox">
-      Bounds: 
-  <div id="current-bounds"></div>
-  </div>
+  <!-- these are temporary displays of map properties while working comment out these DIVs and associated scripts in the final product -->
+  <div id="boundbox">Bounds:<div id="current-bounds"></div></div>
+  <div id="centerbox">Center:<div id="current-center"></div></div>
+  <div id="zoombox">Zoom:<div id="current-zoom"></div></div>
   
-  <div id="centerbox">
-      Center: 
-  <div id="current-center"></div>
-  </div>
-  
-  <div id="zoombox">
-      Zoom: 
-  <div id="current-zoom"></div>
-  </div>
-    
+  <!--THis places the page footer-->
   <footer id="pagefooter">
     <p>Curated by Christopher Miller, Appalachian Center, Berea College and College of Communication &amp; Information, University of Kentucky, 2020. Contact millerc@berea.edu</p>
   </footer>
@@ -201,9 +207,10 @@
     const InitZoom = 4.7, InitZmSnp = 0.1;
     const InitCtrPt = L.latLng(38, -88);
     const MaxBounds = L.latLngBounds(L.latLng(20, -130),L.latLng(50, -54));
-  // initialize maper propert varaibles 
+  // initialize map properties working varaibles 
     var currentBounds = MaxBounds, currentZoom = InitZoom, currentCenter = InitCtrPt;
     var currentBoundsStr = currentBounds.toBBoxString();
+    
   // Initialize Interpretion Items List
     const frostPt = L.latLng(37.576944, -84.293611), frostLbl = "William G. Frost";
     const latcheePt = L.latLng(29.725278, -84.9925), latcheeLbl = "The Apalachee";
@@ -243,7 +250,7 @@
         document.getElementById("current-center").innerText = currentCenter;
       });
     
-    // Place Markers, Create Layer 
+    // Place Markers into Marker Layer
     // Place William G. Frost 1890s Point Marker
     const frostSym = L.marker(frostPt).addTo(map)
         .bindTooltip(frostLbl);
