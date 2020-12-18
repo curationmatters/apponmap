@@ -258,8 +258,8 @@
           proclamIntZm = 4.5,
           proclamIntHd = "The Proclamation of 1763",
           proclamIntBdy = "<p>Map: The British governments in Nth. America: laid down agreeable to the proclamation of Octr. 7, 1763<br>by J.G. Gibson, 1763</p> <p>asdfasdf. . . .</p> <p>asdfasdf.</p>",
-          proclamOverlayURL = "'http://maps.nypl.org/warper/maps/tile/13486/{z}/{x}/{y}.png'",
-          proclamAttr = "Overlay: Boston Public Libary";;
+          proclamOverlayURL = "/images/Gibson1763_crop.jpg",
+          proclamAttr = "Inset: NY Public Library";;
     
     const unknownPt = L.latLng(34.5, -84.3), 
           unknownLbl = "Unknown Interior";
@@ -362,7 +362,7 @@
       map.flyTo(proclamIntCtr, proclamIntZm);
       // load or display another layer or on map  
       IntMarkerGrp.removeFrom(map);
-      var proclamOverlay = L.tileLayer.wms('http://maps.nypl.org/warper/maps/wms/13486?', {layers: 'MapWarper', attribution: proclamAttr}).addTo(map);
+      var proclamOverlay = L.imageOverlay('http://maps.nypl.org/warper/maps/wms/13486?', [[27.4, -89],[49,-68]], {opacity:0.7, attribution: proclamAttr}).addTo(map);
       layerToRemove = proclamOverlay;
       // load content into interparea
       interphead.innerHTML = proclamIntHd;
