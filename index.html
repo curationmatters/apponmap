@@ -161,7 +161,7 @@
   
   <!-- Creates the Navigation bar -->
   <section class="topnav">
-    <a href="#">Link1</a>
+    <a id="resetbutton" href="#">dummy</a>
     <a href="#">Link2</a>
     <a href="#">Link3</a>
   </section>
@@ -187,7 +187,7 @@
   
   <!--THis places the page footer-->
   <footer id="pagefooter">
-    <p>Curated by Christopher Miller, Appalachian Center, Berea College and College of Communication &amp; Information, University of Kentucky, 2020. Contact millerc@berea.edu</p>
+    <p>Curated by Christopher Miller, Appalachian Center, Berea College and College of Communication &amp; Information, University of Kentucky, 2020. Contact <a href="mailto:millerc@berea.edu">millerc@berea.edu</a></p>
   </footer>
   
   <!-- scripts begin here ----------------------------------- -->
@@ -214,11 +214,23 @@
     var currentBoundsStr = currentBounds.toBBoxString();
     
   // Initialize Interpretion Items List
-    const frostPt = L.latLng(37.576944, -84.293611), frostLbl = "William G. Frost";
-    const latcheePt = L.latLng(29.725278, -84.9925), latcheeLbl = "The Apalachee";
-    const proclamLn = [[34, -84.6], [35, -82.7], [36, -81.7], [37, -79.8], [38, -79.1], [39, -78.3], [40.1, -77.5], [41, -76], [43.5, -75.5]], proclamLbl = "The Proclamtion of 1763";
-      // SW to NE is order of points on polyline
-    const unknownPt = L.latLng(34.5, -84.99), unknownLbl = "Unknown Interior";
+    const frostPt = L.latLng(37.5, -84), 
+          frostLbl = "William G. Frost",
+          frostIntCtr = L.latLng(37.5, -83),
+          frostIntZm = 5,
+          frostIntHd = "1893 &quot;Our Contemporary Ancestors&quot; William G. Frost",
+          frostIntBdy = "<p>In the summer of 1893, W.G. Frost, a college president and Greek scholar, rode into the Eastern Kentucky Mountains on horseback. He was looking for students, but he found something he did expect. . . .</p> <p>Frost name his &quot;discovery&quot; Appalachia. He wrote extensively about the region describing the people Colonial Americans frozen time.  He published articles and maps in national magazines and was highly influential at shaping the American perception of Appalachian as a region defined by the characteristics of its people. To Frost these characteristics included being white, of European decent, Christian, southern, wholesome, and ruggedized by the isolation of the mountains.</p>",
+          frostOverlayURL = "./images/FrostMap1899.png";
+    
+    const latcheePt = L.latLng(29.725278, -84.9925), 
+          latcheeLbl = "The Apalachee";
+    
+    const proclamLn = [[34, -84.6], [35, -82.7], [36, -81.7], [37, -79.8], [38, -79.1], [39, -78.3], [40.1, -77.5], [41, -76], [43.5, -75.5]],
+          // SW to NE is order of points on this polyline
+          proclamLbl = "The Proclamtion of 1763";
+    
+    const unknownPt = L.latLng(34.5, -84.3), 
+          unknownLbl = "Unknown Interior";
     
   // output Initial bounds to screen
   // should be removed for final deliverable
@@ -243,6 +255,11 @@
         maxZoom: 9, minZoom: 4
       }).addTo(map);
 
+
+    // Functon for reset button
+    document.getElementById("resetbutton").innerHTML = "Reset";
+        //NOT COMMPLETE, ADD ACTION
+    
     // convienence function to show current map status
     // should be removed for final deliverable
       map.on("moveend", () => {
@@ -285,8 +302,23 @@
     }).addTo(map)
         .bindTooltip(proclamLbl);
 
+    // Define the Actions for Clicks
+    // Define Action Click on Frost Marker
+        frostSym.on('click', () => {
+      // zoom to desired bounds
+      map.flyTo(frostIntCtr, frostIntZm);
+
+      // load or display another layer or  on map
+          
+      var frostOverlay = L.imageOverlay(frostOverlayURL, [[27, -90],[48,-74]]).addTo(map)
+
+      // load content into interparea
+      interphead.innerHTML = frostIntHd;
+      interpbody.innerHTML = frostIntBdy;
+
+    });
+
     
-    // Place 
   </script>
 
 </body>
