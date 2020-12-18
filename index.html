@@ -33,6 +33,7 @@
   header h2 {
     color: maroon;
     text-align: center;
+    font-size: 22pt;
   }
 
   header p {
@@ -171,7 +172,7 @@
 <!--BEGIN THE BODY ------------------------------------- -->
 <body>
   <header id="pageheader">
-    <h2 id="headertitle">Putting App on the Map: A Cartographic Exporation of the Making of Appalachia</h2>
+    <h2 id="headertitle">Putting App' on the Map: A Cartographic Exporation of the Making of Appalachia</h2>
     <!-- <p id="headerbody"></p> -->
   </header>
   
@@ -252,7 +253,13 @@
     
     const proclamLn = [[34, -84.6], [35, -82.7], [36, -81.7], [37, -79.8], [38, -79.1], [39, -78.3], [40.1, -77.5], [41, -76], [43.5, -75.5]],
           // SW to NE is order of points on this polyline
-          proclamLbl = "The Proclamtion of 1763";
+          proclamLbl = "The Proclamation of 1763",
+          proclamIntCtr = L.latLng(37.5, -83),
+          proclamIntZm = 4.5,
+          proclamIntHd = "The Proclamation of 1763",
+          proclamIntBdy = "<p>Map: The British governments in Nth. America: laid down agreeable to the proclamation of Octr. 7, 1763<br>by J.G. Gibson, 1763</p> <p>asdfasdf. . . .</p> <p>asdfasdf.</p>",
+          proclamOverlayURL = "'http://maps.nypl.org/warper/maps/tile/13486/{z}/{x}/{y}.png'",
+          proclamAttr = "Overlay: Boston Public Libary";;
     
     const unknownPt = L.latLng(34.5, -84.3), 
           unknownLbl = "Unknown Interior";
@@ -277,7 +284,7 @@
     // add the base tile layer
     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}', {
         attribution: 'Tiles &copy; Esri &mdash; Source: Esri',
-        maxZoom: 9, minZoom: 4
+        maxZoom: 9, minZoom: 3
       }).addTo(map);
     
     // convienence function to show current map status
@@ -321,7 +328,7 @@
     IntMarkerGrp.addTo(map);
 
     // Define the Actions for Clicks -------------------
-    // Define Show All Button Actions
+    // Define "Show All Markers" Button Actions
     document
       .getElementById("showall")
       .addEventListener("click", () => {
@@ -347,6 +354,19 @@
       // load content into interparea
       interphead.innerHTML = frostIntHd;
       interpbody.innerHTML = frostIntBdy;
+    });  
+    
+    // Define Action Click on Proclamation Marker
+    proclamSym.on('click', () => {
+      // zoom to desired bounds
+      map.flyTo(proclamIntCtr, proclamIntZm);
+      // load or display another layer or on map  
+      IntMarkerGrp.removeFrom(map);
+      var proclamOverlay = L.tileLayer.wms('http://maps.nypl.org/warper/maps/wms/13486?', {layers: 'MapWarper', attribution: proclamAttr}).addTo(map);
+      layerToRemove = proclamOverlay;
+      // load content into interparea
+      interphead.innerHTML = proclamIntHd;
+      interpbody.innerHTML = proclamIntBdy;
     });
 
     
