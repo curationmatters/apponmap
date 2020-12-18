@@ -19,7 +19,7 @@
   <style>
   * {
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Calibri, Arial, Helvetica, sans-serif;
   }
 
   header {
@@ -47,7 +47,7 @@
 
     /* Style the content */
   section {
-    background-color: #ddd;
+    background-color: antiquewhite;
     padding: 6px;
   }
     
@@ -75,14 +75,15 @@
   }
 
   #contentarea {
-    width: 100%
-    position: static;
+    width: 100%;
+    position:static;
     padding: 0px;
   }  
     
   #maparea {
     float: left;
     width: 70%;
+    max-width: 900px;
     height: 600px; /*leaflet requires fixed height*/
     min-width: 600px;  /*not sure I need this min*/
   }
@@ -102,7 +103,7 @@
       text-align: center;
   }
     
-    .interp p {
+  .interp p {
       font-size: 11pt;
       line-height: 1.5;
     }
@@ -135,9 +136,24 @@
       padding: 8px;
   } 
     
+  #showallbutton {
+      position: absolute;
+      left: 50px;
+      top: 112px;
+      z-index: 1000;
+      padding: 8px 12px;
+    }
+    
+    #showall {
+      font-size: 20pt;
+      background-color: antiquewhite;
+      color: maroon
+    }
+    
   /* Style the footer */
   footer {
     position: static;
+    display: block;
     background-color: darkseagreen;
     box-sizing: border-box;
     padding: 8px;
@@ -155,15 +171,15 @@
 <!--BEGIN THE BODY ------------------------------------- -->
 <body>
   <header id="pageheader">
-    <h2 id="headertitle">Putting App on the Map: A Critical Cartographic Exporation of the Making of Appalachia</h2>
+    <h2 id="headertitle">Putting App on the Map: A Cartographic Exporation of the Making of Appalachia</h2>
     <!-- <p id="headerbody"></p> -->
   </header>
   
   <!-- Creates the Navigation bar -->
   <section class="topnav">
-    <a id="resetbutton" href="#">dummy</a>
+    <!-- <a id="resetbutton" href="#">dummy</a>
     <a href="#">Link2</a>
-    <a href="#">Link3</a>
+    <a href="#">Link3</a>-->
   </section>
   
   <!-- Creates the main content area consisting of left and right panes -->
@@ -178,6 +194,10 @@
       <p>Critical regionalism suggests that it is in communicating about the region through texts that we generate and regenerate the Appalachia over and over again. These texts come in many forms: stories, maps, art, and artifacts are some of the most common.</p>
       <p>This interactive map explores some of the historical, and especially cartographic, events that have contributed to the creation of this tangible, yet elusive region.</p>
       </div>
+    </section>
+    <!-- This is the show all button -->
+    <div id="showallbutton"><button id="showall">Show All Markers</button>
+    </div>
   </section>
   
   <!-- these are temporary displays of map properties while working comment out these DIVs and associated scripts in the final product -->
@@ -212,15 +232,20 @@
   // initialize map properties working varaibles 
     var currentBounds = MaxBounds, currentZoom = InitZoom, currentCenter = InitCtrPt;
     var currentBoundsStr = currentBounds.toBBoxString();
+    var layerToRemove = null;
     
   // Initialize Interpretion Items List ---------------------------
+    const initIntHd = document.getElementById("interphead").innerHTML,
+          initIntBdy = document.getElementById("interpbody").innerHTML;
+    
     const frostPt = L.latLng(37.5, -84), 
           frostLbl = "William G. Frost",
           frostIntCtr = L.latLng(37.5, -83),
           frostIntZm = 4.5,
-          frostIntHd = "1893 &quot;Our Contemporary Ancestors&quot; William G. Frost",
-          frostIntBdy = "<p>In the summer of 1893, W.G. Frost, a college president and Greek scholar, rode into the Eastern Kentucky Mountains on horseback. He was looking for students, but he found something he did expect. . . .</p> <p>Frost name his &quot;discovery&quot; Appalachia. He wrote extensively about the region describing the people Colonial Americans frozen time.  He published articles and maps in national magazines and was highly influential at shaping the American perception of Appalachian as a region defined by the characteristics of its people. To Frost these characteristics included being white, of European decent, Christian, southern, wholesome, and ruggedized by the isolation of the mountains.</p>",
-          frostOverlayURL = "./images/FrostMap1899_rot.png";
+          frostIntHd = "&quot;Our Contemporary Ancestors&quot;",
+          frostIntBdy = "<p>Map: Mountain Region of the South<br>by William G. Frost, ca. 1899</p> <p>In the summer of 1893, W.G. Frost, a college president and Greek scholar, rode into the Eastern Kentucky Mountains on horseback. He was looking for students, but he found something he did expect. . . .</p> <p>Frost name his &quot;discovery&quot; Appalachia. He wrote extensively about the region describing the people Colonial Americans frozen time.  He published articles and maps in national magazines and was highly influential at shaping the American perception of Appalachian as a region defined by the characteristics of its people. To Frost these characteristics included being white, of European decent, Christian, southern, wholesome, and ruggedized by the isolation of the mountains.</p>",
+          frostOverlayURL = "./images/FrostMap1899_rot.png",
+          frostAttr = "Inset: Berea College";
     
     const latcheePt = L.latLng(29.725278, -84.9925), 
           latcheeLbl = "The Apalachee";
@@ -254,11 +279,6 @@
         attribution: 'Tiles &copy; Esri &mdash; Source: Esri',
         maxZoom: 9, minZoom: 4
       }).addTo(map);
-
-
-    // Functon for reset button
-    document.getElementById("resetbutton").innerHTML = "Reset";
-        //NOT COMMPLETE, ADD ACTION
     
     // convienence function to show current map status
     // should be removed for final deliverable
@@ -301,13 +321,29 @@
     IntMarkerGrp.addTo(map);
 
     // Define the Actions for Clicks -------------------
+    // Define Show All Button Actions
+    document
+      .getElementById("showall")
+      .addEventListener("click", () => {
+        //reset map view
+        map.flyTo(InitCtrPt, InitZoom);
+        //remove overlay
+        layerToRemove.removeFrom(map);
+        // reload Init into interparea
+        interphead.innerHTML = initIntHd;
+        interpbody.innerHTML = initIntBdy;
+        //put the markers back on the map
+        IntMarkerGrp.addTo(map);
+      });
+    
     // Define Action Click on Frost Marker
     frostSym.on('click', () => {
       // zoom to desired bounds
       map.flyTo(frostIntCtr, frostIntZm);
       // load or display another layer or on map  
       IntMarkerGrp.removeFrom(map);
-      var frostOverlay = L.imageOverlay(frostOverlayURL, [[27.4, -89],[49,-68]], {opacity:0.7}).addTo(map);
+      var frostOverlay = L.imageOverlay(frostOverlayURL, [[27.4, -89],[49,-68]], {opacity:0.7, attribution: frostAttr}).addTo(map);
+      layerToRemove = frostOverlay;
       // load content into interparea
       interphead.innerHTML = frostIntHd;
       interpbody.innerHTML = frostIntBdy;
