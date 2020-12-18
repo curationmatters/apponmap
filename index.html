@@ -254,12 +254,12 @@
     const proclamLn = [[34, -84.6], [35, -82.7], [36, -81.7], [37, -79.8], [38, -79.1], [39, -78.3], [40.1, -77.5], [41, -76], [43.5, -75.5]],
           // SW to NE is order of points on this polyline
           proclamLbl = "The Proclamation of 1763",
-          proclamIntCtr = L.latLng(37.5, -83),
-          proclamIntZm = 4.5,
+          proclamIntCtr = L.latLng(35.724774, -82.470535),
+          proclamIntZm = 5.1,
           proclamIntHd = "The Proclamation of 1763",
           proclamIntBdy = "<p>Map: The British governments in Nth. America: laid down agreeable to the proclamation of Octr. 7, 1763<br>by J.G. Gibson, 1763</p> <p>asdfasdf. . . .</p> <p>asdfasdf.</p>",
           proclamOverlayURL = "/images/Gibson1763_crop.jpg",
-          proclamAttr = "Inset: NY Public Library";;
+          proclamAttr = "Inset: NY Public Library";
     
     const unknownPt = L.latLng(34.5, -84.3), 
           unknownLbl = "Unknown Interior";
@@ -318,7 +318,7 @@
     // Place Proclamation of 1763
     const proclamSym = L.polyline(proclamLn, {
       color:'cornflowerblue',
-      weight:5,
+      weight:6,
       opacity:0.8,
       dashArray:'8',
       lineCap: 'round',
@@ -349,7 +349,7 @@
       map.flyTo(frostIntCtr, frostIntZm);
       // load or display another layer or on map  
       IntMarkerGrp.removeFrom(map);
-      var frostOverlay = L.imageOverlay(frostOverlayURL, [[27.4, -89],[49,-68]], {opacity:0.7, attribution: frostAttr}).addTo(map);
+      var frostOverlay = L.imageOverlay(frostOverlayURL, [[27.4, -87],[49,-71]], {opacity:0.7, attribution: frostAttr}).addTo(map);
       layerToRemove = frostOverlay;
       // load content into interparea
       interphead.innerHTML = frostIntHd;
@@ -362,7 +362,7 @@
       map.flyTo(proclamIntCtr, proclamIntZm);
       // load or display another layer or on map  
       IntMarkerGrp.removeFrom(map);
-      var proclamOverlay = L.imageOverlay('http://maps.nypl.org/warper/maps/wms/13486?', [[27.4, -89],[49,-68]], {opacity:0.7, attribution: proclamAttr}).addTo(map);
+      var proclamOverlay = L.imageOverlay(proclamOverlayURL, [[26.4, -89],[44,-73]], {opacity:0.9, attribution: proclamAttr}).addTo(map);
       layerToRemove = proclamOverlay;
       // load content into interparea
       interphead.innerHTML = proclamIntHd;
