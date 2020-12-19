@@ -193,11 +193,15 @@
     <!-- This is the right pane wher the interpretation resides -->
     <section class="interp" id="interparea">
       <h3 id="interphead">What &amp; Where is Appalachia?</h3>
+      <div id="interpID"></div>
+      <hr>
       <div id="interpbody">
       <p>To most people Appalachia is a fuzzy region of the  eastern U.S. People typically think it exists but if you ask 10 people what and were Appalachia is, you will probably get 10 different answers. This is because the region of Appalachia is socially constructed. It is a not a static place defined by clear boundaries. Over centuries many different people and events have built out collective understanding of the region, yet each person's understanding (or misunderstanding!) of these events adds up to a different version of Appalachia.</p> 
       <p>Critical regionalism suggests that it is in communicating about the region through texts that we generate and regenerate the Appalachia over and over again. These texts come in many forms: stories, maps, art, and artifacts are some of the most common.</p>
       <p>This interactive map explores some of the historical, and especially cartographic, events that have contributed to the creation of this tangible, yet elusive region.</p>
       </div>
+      <hr>
+      <div id=interpLnk></div>
     </section>
     <!-- This is the show all button -->
     <div id="showallbutton"><button id="showall">Show All Markers</button>
@@ -247,27 +251,27 @@
     
     const frostPt = L.latLng(37.5, -84), 
           frostLbl = "Appalachia as a People",
-          frostIntCtr = L.latLng(37.5, -83),
-          frostIntZm = 4.5,
+          frostIntCtr = L.latLng(36.714278, -82.544684),
+          frostIntZm = 6.0,
           frostOverlayURL = "./images/FrostMap1899_rot.png",
           frostAttr = "Inset: Berea College",
           frostIntHd = "Appalachia as &quot;Our Contemporary Ancestors&quot;",
           frostIntID = "<p>Map: Mountain Region of the South<br>by William G. Frost, ca. 1899</p>",
           frostIntBdy = "<p>In the summer of 1893, W.G. Frost, a college president and Greek scholar, rode into the Eastern Kentucky Mountains on horseback. He was looking for students, but he found something he did expect. . . .</p> <p>Frost named his &quot;discovery&quot; Appalachia. He wrote extensively about the region describing the people Colonial Americans frozen time. He published articles and maps in national magazines and was highly influential at shaping the American perception of Appalachian as a region defined by the characteristics of its people. To Frost these characteristics included being white, of European decent, Christian, southern, wholesome, and ruggedized by the isolation of the mountains.</p>",
-          frostIntLnk = "<p><a href=https://digitalcollections.nypl.org/items/510d47da-f148-a3d9-e040-e00a18064a99 target=&quot;_blank&quot;>View the entire 1763 map at the New York Public Library.</a></p>"
+          frostIntLnk = "<p><a href=https://digitalcollections.nypl.org/items/510d47da-f148-a3d9-e040-e00a18064a99 target=_blank>View the entire  map at the New York Public Library;.</a></p>"
           ;
 
     
-    const latcheePt = L.latLng(29.725278, -84.9925), 
+    const latcheePt = L.latLng(30.455, -84.253333), 
           latcheeLbl = "The Apalachee People",
-          latcheeIntCtr = L.latLng(37.5, -83),
-          latcheeIntZm = 4.5,
-          latcheeOverlayURL = "./images/asdfasdf,jpg",
+          latcheeIntCtr = L.latLng(32.644579, -83.535439),
+          latcheeIntZm = 7,
+          latcheeOverlayURL = "./images/1732_Chatelain_Appalachee_Inset.jpg",
           latcheeAttr = "Inset: NY Public Library Digital Collections",
           latcheeIntHd = "The Appalachee People Who Gave their Name to Appalachia",
           latcheeIntID = "<p>Map: Carte contenant le royaume du Mexique et la Floride: dressée sur les meilleures observations & sur les mémoires les plus nouveaux<br>by Chatelain, Henri Abraham, 1732</p>",
-          latcheeIntBdy = "<p>asdf . . .</p> <p>asdf</p>",
-          latcheeIntLnk = "<p><a https://digitalcollections.nypl.org/items/61ccf6d0-f828-0132-109d-58d385a7b928 target=&quot;_blank&quot;>View the entire 1732 map at the New York Public Library.</a></p>"
+          latcheeIntBdy = "<p>The Apalachee people were a native American society who occupied an area around present day Tallahassee, Fla. at the arrival of Spanish explorers in 1528. They were the southernmost extent of Mississippian culture.</p><p>As the Spanish encroached and setup missions, that region become known to some Europeans as the Apalachee Province. Caught between the abuses of the Spanish and the British Colony of Carolina, the Apalachee people were scattered and decimated by the early 1700s, but their name remained on the landscape designating the inlands of present day Georgia and the Carolinas. </p>",
+          latcheeIntLnk = "<p><a href=https://digitalcollections.nypl.org/items/61ccf6d0-f828-0132-109d-58d385a7b928 target=_blank>View the entire 1732 map at the New York Public Library.</a><br><a href=https://en.wikipedia.org/wiki/Apalachee target=_blank>Learn more about the Apalachee at Wikipedia</p>"
           ;
     
     const proclamLn = [[34, -84.6], [35, -82.7], [36, -81.7], [37, -79.8], [38, -79.1], [39, -78.3], [40.1, -77.5], [41, -76], [43.5, -75.5]],
@@ -383,7 +387,9 @@
         layerToRemove.removeFrom(map);
         // reload Init into interparea
         interphead.innerHTML = initIntHd;
+        interpID.innerHTML = null; //empty on home screen
         interpbody.innerHTML = initIntBdy;
+        interpLnk.innerHTML = null; //empty on home screen
         //put the markers back on the map
         IntMarkerGrp.addTo(map);
       });
@@ -394,13 +400,15 @@
       map.flyTo(frostIntCtr, frostIntZm);
       // load or display another layer or on map  
       IntMarkerGrp.removeFrom(map);
-      var frostOverlay = L.imageOverlay(frostOverlayURL, [[27.4, -87],[49,-71]], {opacity:0.7, attribution: frostAttr}).addTo(map);
+      var frostOverlay = L.imageOverlay(frostOverlayURL, [[27.4, -87],[49,-70]], {opacity:0.8, attribution: frostAttr}).addTo(map);
       layerToRemove = frostOverlay;
       // load content into interparea
       interphead.innerHTML = frostIntHd;
+      interpID.innerHTML = frostIntID;
       interpbody.innerHTML = frostIntBdy;
+      interpLnk.innerHTML = frostIntLnk;
     });  
-    
+ 
     // Define Action Click on Proclamation Marker
     proclamSym.on('click', () => {
       // zoom to desired bounds
@@ -411,10 +419,26 @@
       layerToRemove = proclamOverlay;
       // load content into interparea
       interphead.innerHTML = proclamIntHd;
+      interpID.innerHTML = proclamIntID;
       interpbody.innerHTML = proclamIntBdy;
+      interpLnk.innerHTML = proclamIntLnk;
     });
 
-    
+      // Define Action Click on Apalachee People Marker
+    latcheeSym.on('click', () => {
+      // zoom to desired bounds
+      map.flyTo(latcheeIntCtr, latcheeIntZm);
+      // load or display another layer or on map  
+      IntMarkerGrp.removeFrom(map);
+      var latcheeOverlay = L.imageOverlay(latcheeOverlayURL, [[25.3, -89],[38,-75]], {opacity:0.9, attribution: latcheeAttr}).addTo(map);
+      layerToRemove = latcheeOverlay;
+      // load content into interparea
+      interphead.innerHTML = latcheeIntHd;
+      interpID.innerHTML = latcheeIntID;
+      interpbody.innerHTML = latcheeIntBdy;
+      interpLnk.innerHTML = latcheeIntLnk;
+    });
+
   </script>
 
 </body>
