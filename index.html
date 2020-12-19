@@ -259,7 +259,15 @@
 
     
     const latcheePt = L.latLng(29.725278, -84.9925), 
-          latcheeLbl = "The Apalachee"
+          latcheeLbl = "The Apalachee People",
+          latcheeIntCtr = L.latLng(37.5, -83),
+          latcheeIntZm = 4.5,
+          latcheeOverlayURL = "./images/asdfasdf,jpg",
+          latcheeAttr = "Inset: NY Public Library Digital Collections",
+          latcheeIntHd = "The Appalachee People Who Gave their Name to Appalachia",
+          latcheeIntID = "<p>Map: Carte contenant le royaume du Mexique et la Floride: dressée sur les meilleures observations & sur les mémoires les plus nouveaux<br>by Chatelain, Henri Abraham, 1732</p>",
+          latcheeIntBdy = "<p>asdf . . .</p> <p>asdf</p>",
+          latcheeIntLnk = "<p><a https://digitalcollections.nypl.org/items/61ccf6d0-f828-0132-109d-58d385a7b928 target=&quot;_blank&quot;>View the entire 1732 map at the New York Public Library.</a></p>"
           ;
     
     const proclamLn = [[34, -84.6], [35, -82.7], [36, -81.7], [37, -79.8], [38, -79.1], [39, -78.3], [40.1, -77.5], [41, -76], [43.5, -75.5]],
@@ -272,7 +280,7 @@
           proclamIntHd = "Appalachia as Boundary",
           proclamIntID = "<p>Map: &quot;The British governments in Nth. America: laid down agreeable to the proclamation of Octr. 7, 1763&quot;<br>by J.G. Gibson, 1763</p>",
           proclamIntBdy = "<p>asdfasdf. . . .</p> <p>The proclamation made Appalachia boundary between the Colonies to the east and the &quot;Lands reserved for the Indians&quot; in the west, an idea clearly reflected in this map.</p>",
-          proclamIntLnk = "<p><a href=https://digitalcollections.nypl.org/items/510d47da-f148-a3d9-e040-e00a18064a99 target=&quot;_blank&quot;>View the entire 1763 map at the New York Public Library.</a></p>",
+          proclamIntLnk = "<p><a href=https://digitalcollections.nypl.org/items/510d47da-f148-a3d9-e040-e00a18064a99 target=&quot;_blank&quot;>View the entire 1763 map at the New York Public Library.</a></p>"
           ;
     
     const unknownPt = L.latLng(34.5, -84.3), 
@@ -286,6 +294,20 @@
           unknownIntBdy = "<p>asdf . . .</p> <p>asdf</p>",
           unknownIntLnk = "<p><a href=https://digitalcollections.nypl.org/items/510d47da-f148-a3d9-e040-e00a18064a99 target=&quot;_blank&quot;>View the entire 1763 map at the New York Public Library.</a></p>"
           ;
+    
+    /* Generic Version of the Interpetive Items Data
+    const unknownPt = L.latLng(34.5, -84.3), 
+          unknownLbl = "Appalachia as Unknown Interior",
+          unknownIntCtr = L.latLng(37.5, -83),
+          unknownIntZm = 4.5,
+          unknownOverlayURL = "./images/FrostMap1899_rot.png",
+          unknownAttr = "Inset: asdfasdf",
+          unknownIntHd = "Appalachia as Unknown Interior of N. America",
+          unknownIntID = "<p>Map: adfas<br>by asdfasdf, ca. 9999</p>",
+          unknownIntBdy = "<p>asdf . . .</p> <p>asdf</p>",
+          unknownIntLnk = "<p><a href=https://digitalcollections.nypl.org/items/510d47da-f148-a3d9-e040-e00a18064a99 target=&quot;_blank&quot;>View the entire 1763 map at the New York Public Library.</a></p>"
+          ;
+    */
     
   // output Initial bounds to screen
   // should be removed for final deliverable
