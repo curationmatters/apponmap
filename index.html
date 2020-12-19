@@ -157,11 +157,14 @@
     display: block;
     background-color: darkseagreen;
     box-sizing: border-box;
+    vertical-align: middle;
     padding: 8px;
     }
     
   footer p {
     font-size: small;
+    vertical-align: middle;
+    text-align: right;
     color: white;
     }
     
@@ -208,7 +211,10 @@
   
   <!--THis places the page footer-->
   <footer id="pagefooter">
-    <p>Curated by Christopher Miller, Appalachian Center, Berea College and College of Communication &amp; Information, University of Kentucky, 2020. Contact <a href="mailto:millerc@berea.edu">millerc@berea.edu</a></p>
+    <p>Curated by Christopher Miller, 
+      <br>Appalachian Center, Berea College and College of Communication &amp; Information, University of Kentucky, 2020. 
+      <br>Contact <a href="mailto:millerc@berea.edu">millerc@berea.edu</a>
+    </p>
   </footer>
   
   <!-- scripts begin here ----------------------------------- -->
@@ -240,29 +246,46 @@
           initIntBdy = document.getElementById("interpbody").innerHTML;
     
     const frostPt = L.latLng(37.5, -84), 
-          frostLbl = "William G. Frost",
+          frostLbl = "Appalachia as a People",
           frostIntCtr = L.latLng(37.5, -83),
           frostIntZm = 4.5,
-          frostIntHd = "&quot;Our Contemporary Ancestors&quot;",
-          frostIntBdy = "<p>Map: Mountain Region of the South<br>by William G. Frost, ca. 1899</p> <p>In the summer of 1893, W.G. Frost, a college president and Greek scholar, rode into the Eastern Kentucky Mountains on horseback. He was looking for students, but he found something he did expect. . . .</p> <p>Frost name his &quot;discovery&quot; Appalachia. He wrote extensively about the region describing the people Colonial Americans frozen time.  He published articles and maps in national magazines and was highly influential at shaping the American perception of Appalachian as a region defined by the characteristics of its people. To Frost these characteristics included being white, of European decent, Christian, southern, wholesome, and ruggedized by the isolation of the mountains.</p>",
           frostOverlayURL = "./images/FrostMap1899_rot.png",
-          frostAttr = "Inset: Berea College";
+          frostAttr = "Inset: Berea College",
+          frostIntHd = "Appalachia as &quot;Our Contemporary Ancestors&quot;",
+          frostIntID = "<p>Map: Mountain Region of the South<br>by William G. Frost, ca. 1899</p>",
+          frostIntBdy = "<p>In the summer of 1893, W.G. Frost, a college president and Greek scholar, rode into the Eastern Kentucky Mountains on horseback. He was looking for students, but he found something he did expect. . . .</p> <p>Frost named his &quot;discovery&quot; Appalachia. He wrote extensively about the region describing the people Colonial Americans frozen time. He published articles and maps in national magazines and was highly influential at shaping the American perception of Appalachian as a region defined by the characteristics of its people. To Frost these characteristics included being white, of European decent, Christian, southern, wholesome, and ruggedized by the isolation of the mountains.</p>",
+          frostIntLnk = "<p><a href=https://digitalcollections.nypl.org/items/510d47da-f148-a3d9-e040-e00a18064a99 target=&quot;_blank&quot;>View the entire 1763 map at the New York Public Library.</a></p>"
+          ;
+
     
     const latcheePt = L.latLng(29.725278, -84.9925), 
-          latcheeLbl = "The Apalachee";
+          latcheeLbl = "The Apalachee"
+          ;
     
     const proclamLn = [[34, -84.6], [35, -82.7], [36, -81.7], [37, -79.8], [38, -79.1], [39, -78.3], [40.1, -77.5], [41, -76], [43.5, -75.5]],
           // SW to NE is order of points on this polyline
-          proclamLbl = "The Proclamation of 1763",
-          proclamIntCtr = L.latLng(35.724774, -82.470535),
-          proclamIntZm = 5.1,
-          proclamIntHd = "The Proclamation of 1763",
-          proclamIntBdy = "<p>Map: The British governments in Nth. America: laid down agreeable to the proclamation of Octr. 7, 1763<br>by J.G. Gibson, 1763</p> <p>asdfasdf. . . .</p> <p>asdfasdf.</p>",
+          proclamLbl = "Appalachia as Boundary",
+          proclamIntCtr = L.latLng(36.906779, -80.845497),
+          proclamIntZm = 6.4,
           proclamOverlayURL = "./images/Gibson1763_crop.jpg",
-          proclamAttr = "Inset: NY Public Library";
+          proclamAttr = "Inset: NY Public Library Digital Collections",
+          proclamIntHd = "Appalachia as Boundary",
+          proclamIntID = "<p>Map: &quot;The British governments in Nth. America: laid down agreeable to the proclamation of Octr. 7, 1763&quot;<br>by J.G. Gibson, 1763</p>",
+          proclamIntBdy = "<p>asdfasdf. . . .</p> <p>The proclamation made Appalachia boundary between the Colonies to the east and the &quot;Lands reserved for the Indians&quot; in the west, an idea clearly reflected in this map.</p>",
+          proclamIntLnk = "<p><a href=https://digitalcollections.nypl.org/items/510d47da-f148-a3d9-e040-e00a18064a99 target=&quot;_blank&quot;>View the entire 1763 map at the New York Public Library.</a></p>",
+          ;
     
     const unknownPt = L.latLng(34.5, -84.3), 
-          unknownLbl = "Unknown Interior";
+          unknownLbl = "Appalachia as Unknown Interior",
+          unknownIntCtr = L.latLng(37.5, -83),
+          unknownIntZm = 4.5,
+          unknownOverlayURL = "./images/FrostMap1899_rot.png",
+          unknownAttr = "Inset: asdfasdf",
+          unknownIntHd = "Appalachia as Unknown Interior of N. America",
+          unknownIntID = "<p>Map: adfas<br>by asdfasdf, ca. 9999</p>",
+          unknownIntBdy = "<p>asdf . . .</p> <p>asdf</p>",
+          unknownIntLnk = "<p><a href=https://digitalcollections.nypl.org/items/510d47da-f148-a3d9-e040-e00a18064a99 target=&quot;_blank&quot;>View the entire 1763 map at the New York Public Library.</a></p>"
+          ;
     
   // output Initial bounds to screen
   // should be removed for final deliverable
@@ -281,9 +304,9 @@
         maxBounds: MaxBounds,
       });
     
-    // add the base tile layer
+    // add the base tile shaded relief layer
     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}', {
-        attribution: 'Tiles &copy; Esri &mdash; Source: Esri',
+        attribution: 'Tiles: &copy; Esri &mdash; Source: Esri',
         maxZoom: 9, minZoom: 3
       }).addTo(map);
     
