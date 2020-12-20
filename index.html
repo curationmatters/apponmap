@@ -104,6 +104,11 @@
       text-align: center;
   }
     
+  .interp h4 {
+      color: maroon;
+      text-align: left;
+  }
+    
   .interp p {
       font-size: 11pt;
       line-height: 1.5;
@@ -193,14 +198,15 @@
     <!-- This is the right pane wher the interpretation resides -->
     <section class="interp" id="interparea">
       <h3 id="interphead">What &amp; Where is Appalachia?</h3>
+      <h4>Map Info:</h4>
       <div id="interpID"></div>
-      <hr>
+      <h4>Interpretation:</h4>
       <div id="interpbody">
       <p>To most people Appalachia is a fuzzy region of the  eastern U.S. People typically think it exists but if you ask 10 people what and were Appalachia is, you will probably get 10 different answers. This is because the region of Appalachia is socially constructed. It is a not a static place defined by clear boundaries. Over centuries many different people and events have built out collective understanding of the region, yet each person's understanding (or misunderstanding!) of these events adds up to a different version of Appalachia.</p> 
       <p>Critical regionalism suggests that it is in communicating about the region through texts that we generate and regenerate the Appalachia over and over again. These texts come in many forms: stories, maps, art, and artifacts are some of the most common.</p>
       <p>This interactive map explores some of the historical, and especially cartographic, events that have contributed to the creation of this tangible, yet elusive region.</p>
       </div>
-      <hr>
+      <h4>Links:</h4>
       <div id=interpLnk></div>
     </section>
     <!-- This is the show all button -->
@@ -255,12 +261,11 @@
           frostIntZm = 6.0,
           frostOverlayURL = "./images/FrostMap1899_rot.png",
           frostAttr = "Inset: Berea College",
-          frostIntHd = "Appalachia as &quot;Our Contemporary Ancestors&quot;",
-          frostIntID = "<p>Map: Mountain Region of the South<br>by William G. Frost, ca. 1899</p>",
-          frostIntBdy = "<p>In the summer of 1893, W.G. Frost, a college president and Greek scholar, rode into the Eastern Kentucky Mountains on horseback. He was looking for students, but he found something he did expect. . . .</p> <p>Frost named his &quot;discovery&quot; Appalachia. He wrote extensively about the region describing the people Colonial Americans frozen time. He published articles and maps in national magazines and was highly influential at shaping the American perception of Appalachian as a region defined by the characteristics of its people. To Frost these characteristics included being white, of European decent, Christian, southern, wholesome, and ruggedized by the isolation of the mountains.</p>",
-          frostIntLnk = "<p><a href=https://digitalcollections.nypl.org/items/510d47da-f148-a3d9-e040-e00a18064a99 target=_blank>View the entire  map at the New York Public Library;.</a></p>"
+          frostIntHd = "Appalachia as<br>&quot;Our Contemporary Ancestors&quot;",
+          frostIntID = "<p>Title: <i>Mountain Region of the South</i><br>by William G. Frost, ca. 1899</p>",
+          frostIntBdy = "<p>In the summer of 1893, W.G. Frost, a college president and Greek scholar, rode into the Eastern Kentucky Mountains on horseback. He was looking for students but he found a place and a people that ignited his imagination. Believing he discovered this place, Frost named it Appalachia.</p><p>Frost wrote extensively about &quot;Appalachian America&quot; describing the people Colonial Americans frozen time by isolation. He published in national magazines and was influential at shaping the American perception of Appalachia as a region defined as an isolated people who lived differently from the rest of America. To Frost Appalachians were white Christian people of European decent who were Southern, wholesome, and ruggedized by the isolation of the mountains.</p>",
+          frostIntLnk = "<p><a href=https://berea.access.preservica.com/uncategorized/IO_76228f7a-b586-406b-89d0-d2e7f6ed9372/ target=_blank>Frosts article in Atlantic Monthly, March 1899, in the Berea College Archives</a></p>"
           ;
-
     
     const latcheePt = L.latLng(30.455, -84.253333), 
           latcheeLbl = "The Apalachee People",
@@ -268,9 +273,9 @@
           latcheeIntZm = 7,
           latcheeOverlayURL = "./images/1732_Chatelain_Appalachee_Inset.jpg",
           latcheeAttr = "Inset: NY Public Library Digital Collections",
-          latcheeIntHd = "The Appalachee People Who Gave their Name to Appalachia",
-          latcheeIntID = "<p>Map: Carte contenant le royaume du Mexique et la Floride: dressée sur les meilleures observations & sur les mémoires les plus nouveaux<br>by Chatelain, Henri Abraham, 1732</p>",
-          latcheeIntBdy = "<p>The Apalachee people were a native American society who occupied an area around present day Tallahassee, Fla. at the arrival of Spanish explorers in 1528. They were the southernmost extent of Mississippian culture.</p><p>As the Spanish encroached and setup missions, that region become known to some Europeans as the Apalachee Province. Caught between the abuses of the Spanish and the British Colony of Carolina, the Apalachee people were scattered and decimated by the early 1700s, but their name remained on the landscape designating the inlands of present day Georgia and the Carolinas. </p>",
+          latcheeIntHd = "The Appalachee People<br>Who Gave their Name to Appalachia",
+          latcheeIntID = "<p>Title: <i>Carte contenant le royaume du Mexique et la Floride: dressée sur les meilleures observations & sur les mémoires les plus nouveaux</i><br>by Chatelain, Henri Abraham, 1732</p>",
+          latcheeIntBdy = "<p>The Apalachee people were a native American society who occupied an area around present day Tallahassee, Fla. at the arrival of Spanish explorers in 1528. They were the southernmost extent of Mississippian culture.</p><p>As the Spanish encroached and setup missions, that region become known to some Europeans as the Apalachee Province. Caught between the abuses of the Spanish and the British Colony of Carolina, by the early 1700s, the Apalachee people were scattered and decimated.  This map and a 1710 map by Amstel are the earliest to label the southern range of the mountains and a region for the Apalachee. </p>",
           latcheeIntLnk = "<p><a href=https://digitalcollections.nypl.org/items/61ccf6d0-f828-0132-109d-58d385a7b928 target=_blank>View the entire 1732 map at the New York Public Library.</a><br><a href=https://en.wikipedia.org/wiki/Apalachee target=_blank>Learn more about the Apalachee at Wikipedia</p>"
           ;
     
@@ -282,21 +287,33 @@
           proclamOverlayURL = "./images/Gibson1763_crop.jpg",
           proclamAttr = "Inset: NY Public Library Digital Collections",
           proclamIntHd = "Appalachia as Boundary",
-          proclamIntID = "<p>Map: &quot;The British governments in Nth. America: laid down agreeable to the proclamation of Octr. 7, 1763&quot;<br>by J.G. Gibson, 1763</p>",
+          proclamIntID = "<p>Title: <i>The British governments in Nth. America: laid down agreeable to the proclamation of Octr. 7, 1763<i/>;<br>by J.G. Gibson, 1763</p>",
           proclamIntBdy = "<p>asdfasdf. . . .</p> <p>The proclamation made Appalachia boundary between the Colonies to the east and the &quot;Lands reserved for the Indians&quot; in the west, an idea clearly reflected in this map.</p>",
-          proclamIntLnk = "<p><a href=https://digitalcollections.nypl.org/items/510d47da-f148-a3d9-e040-e00a18064a99 target=&quot;_blank&quot;>View the entire 1763 map at the New York Public Library.</a></p>"
+          proclamIntLnk = "<p><a href=https://digitalcollections.nypl.org/items/510d47da-f148-a3d9-e040-e00a18064a99 target=_blank>View the entire 1763 map at the New York Public Library.</a></p>"
           ;
     
     const unknownPt = L.latLng(34.5, -84.3), 
           unknownLbl = "Appalachia as Unknown Interior",
-          unknownIntCtr = L.latLng(37.5, -83),
-          unknownIntZm = 4.5,
-          unknownOverlayURL = "./images/FrostMap1899_rot.png",
-          unknownAttr = "Inset: asdfasdf",
+          unknownIntCtr = L.latLng(32.380141, -82.630827),
+          unknownIntZm = 6.5,
+          unknownOverlayURL = "./images/1562_Gutierrez_inset.jpg",
+          unknownAttr = "Inset: Library of Congress",
           unknownIntHd = "Appalachia as Unknown Interior of N. America",
-          unknownIntID = "<p>Map: adfas<br>by asdfasdf, ca. 9999</p>",
-          unknownIntBdy = "<p>asdf . . .</p> <p>asdf</p>",
-          unknownIntLnk = "<p><a href=https://digitalcollections.nypl.org/items/510d47da-f148-a3d9-e040-e00a18064a99 target=&quot;_blank&quot;>View the entire 1763 map at the New York Public Library.</a></p>"
+          unknownIntID = "<p>Title: <i>Americae sive qvartae orbis partis nova et exactissima descriptio</i><br>by Gutiérrez, Diego, 1562</p>",
+          unknownIntBdy = "<p>In 1562 this was the largest engraved map of America produced and would remain so for 100 years. It was produced to as a display map to assert or celebrate Spanish lands the Americas.  As such, it asserted primiarly generalities include the presence of large region labelled Apalchen in the North American interior. This map may the be earliest representation of a vauge region named something like Appalachia.</p>",
+          unknownIntLnk = "<p><a href=http://hdl.loc.gov/loc.gmd/g3290.ct000342 target=_blank>View the entire 1562 map at the Library of Congress.</a></p>"
+          ;
+    
+    const physioPt = L.latLng(38.045522, -80.064486), 
+          physioLbl = "Appalachian Physiographic Division",
+          physioIntCtr = L.latLng(37.496607, -81.962366),
+          physioIntZm = 5.8,
+          physioOverlayURL = "./images/Fenneman_1917_Map_inset.jpg",
+          physioAttr = "Inset: National Academy of Sciences",
+          physioIntHd = "Appalachia as Physiographic Divison",
+          physioIntID = "<p>Map: Physiographic Divisions of the United States<br>by Fenneman, Nevin M., 1917</p>",
+          physioIntBdy = "<p>In 1917 Fenniman published an influential article classifying regions of the world according to their morphology (landforms) and shared geological history. This work was a part of a rationalist ferver in many sciences and was modeled on the taxonomy of living things and the classifications of physical elements.</p> <p>Fenniman's initial classifications have been further developed and depended, but his classifications of Appalachia remain in use.  The Appalachian Highlands Division is divided into several physiographic provinces, notably 4 - the piedmont, 5 - the Blue Ridge, 6 - the ridge &amp; valley, and 8 - the plateaus; which are in turn divided into sections.</p>",
+          physioIntLnk = "<p><a href=https://doi.org/10.1073/pnas.3.1.17 target=_blank>Fenneman, N.M. (1917) Physiographic Subdivision of the United States. <i>Proceedings of the National Academy of Sciences</i>, Jan 1917, <i>3</i>(1) pp.17-22</a></p>"
           ;
     
     /* Generic Version of the Interpetive Items Data
@@ -309,7 +326,7 @@
           unknownIntHd = "Appalachia as Unknown Interior of N. America",
           unknownIntID = "<p>Map: adfas<br>by asdfasdf, ca. 9999</p>",
           unknownIntBdy = "<p>asdf . . .</p> <p>asdf</p>",
-          unknownIntLnk = "<p><a href=https://digitalcollections.nypl.org/items/510d47da-f148-a3d9-e040-e00a18064a99 target=&quot;_blank&quot;>View the entire 1763 map at the New York Public Library.</a></p>"
+          unknownIntLnk = "<p><a href=https://digitalcollections.nypl.org/items/510d47da-f148-a3d9-e040-e00a18064a99 target=_blank>View the entire 1763 map at the New York Public Library.</a></p>"
           ;
     */
     
@@ -373,6 +390,8 @@
       lineCap: 'round',
       // zIndex:6
     }).bindTooltip(proclamLbl).addTo(IntMarkerGrp);
+    // Place Fenneman Physiographic Marker
+      const physioSym = L.marker(physioPt).bindTooltip(physioLbl).addTo(IntMarkerGrp);
     
     IntMarkerGrp.addTo(map);
 
@@ -424,7 +443,7 @@
       interpLnk.innerHTML = proclamIntLnk;
     });
 
-      // Define Action Click on Apalachee People Marker
+    // Define Action Click on Apalachee People Marker
     latcheeSym.on('click', () => {
       // zoom to desired bounds
       map.flyTo(latcheeIntCtr, latcheeIntZm);
@@ -437,6 +456,36 @@
       interpID.innerHTML = latcheeIntID;
       interpbody.innerHTML = latcheeIntBdy;
       interpLnk.innerHTML = latcheeIntLnk;
+    });
+
+    // Define Action Click on Physigraphic People Marker
+    physioSym.on('click', () => {
+      // zoom to desired bounds
+      map.flyTo(physioIntCtr, physioIntZm);
+      // load or display another layer or on map  
+      IntMarkerGrp.removeFrom(map);
+      var physioOverlay = L.imageOverlay(physioOverlayURL, [[25, -98],[48,-69]], {opacity:0.9, attribution: physioAttr}).addTo(map);
+      layerToRemove = physioOverlay;
+      // load content into interparea
+      interphead.innerHTML = physioIntHd;
+      interpID.innerHTML = physioIntID;
+      interpbody.innerHTML = physioIntBdy;
+      interpLnk.innerHTML = physioIntLnk;
+    });
+
+   // Define Action Click on Interior Region
+    unknownSym.on('click', () => {
+      // zoom to desired bounds
+      map.flyTo(unknownIntCtr, unknownIntZm);
+      // load or display another layer or on map  
+      IntMarkerGrp.removeFrom(map);
+      var unknownOverlay = L.imageOverlay(unknownOverlayURL, [[25.3, -86.4],[35.5,-79.4]], {opacity:0.6, attribution: physioAttr}).addTo(map);
+      layerToRemove = unknownOverlay;
+      // load content into interparea
+      interphead.innerHTML = unknownIntHd;
+      interpID.innerHTML = unknownIntID;
+      interpbody.innerHTML = unknownIntBdy;
+      interpLnk.innerHTML = unknownIntLnk;
     });
 
   </script>
