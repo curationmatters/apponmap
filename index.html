@@ -107,6 +107,7 @@
   .interp h4 {
       color: maroon;
       text-align: left;
+      margin-bottom: 0;
   }
     
   .interp p {
@@ -150,7 +151,7 @@
       padding: 8px 12px;
     }
     
-    #showall {
+  #showall {
       font-size: 20pt;
       background-color: antiquewhite;
       color: maroon
@@ -169,7 +170,7 @@
   footer p {
     font-size: small;
     vertical-align: middle;
-    text-align: right;
+    text-align: left;
     color: white;
     }
     
@@ -180,7 +181,7 @@
 <!--BEGIN THE BODY ------------------------------------- -->
 <body>
   <header id="pageheader">
-    <h2 id="headertitle">Putting App' on the Map: A Cartographic Exploration of the Making of Appalachia</h2>
+    <h2 id="headertitle">Putting App' on the Map: A&nbsp;Cartographic&nbsp;Exploration of&nbsp;the Making&nbsp;of&nbsp;Appalachia</h2>
     <!-- <p id="headerbody"></p> -->
   </header>
   
@@ -197,22 +198,22 @@
     <section id="maparea"></section>
     <!-- This is the right pane wher the interpretation resides -->
     <section class="interp" id="interparea">
-      <h3 id="interphead">What &amp; Where is Appalachia?</h3>
-      <h4>Map Info:</h4>
+      <h3 id="interpHD">What&nbsp;&amp;&nbsp;Where is&nbsp;Appalachia?</h3>
+      <h4 id="interpSHID"></h4>
       <div id="interpID"></div>
-      <h4>Interpretation:</h4>
+      <h4 id="interpSHbody"></h4>
       <div id="interpbody">
       <p>To most people Appalachia is a fuzzy region of the  eastern U.S. People typically think it exists but if you ask 10 people what and were Appalachia is, you will probably get 10 different answers. This is because the region of Appalachia is socially constructed. It is a not a static place defined by clear boundaries. Over centuries many different people and events have built out collective understanding of the region, yet each person's understanding (or misunderstanding!) of these events adds up to a different version of Appalachia.</p> 
       <p>Critical regionalism suggests that it is in communicating about the region through texts that we generate and regenerate the Appalachia over and over again. These texts come in many forms: stories, maps, art, and artifacts are some of the most common.</p>
       <p>This interactive map explores some of the historical, and especially cartographic, events that have contributed to the creation of this tangible, yet elusive region.</p>
       </div>
-      <h4>Links:</h4>
+      <h4 id="interpSHLnk"></h4>
       <div id=interpLnk></div>
     </section>
     <!-- This is the show all button -->
     <div id="showallbutton"><button id="showall">Show All Markers</button>
     </div>
-  </section>
+  </section> <!-- End of DIV contentarea-->
   
   <!-- these are temporary displays of map properties while working comment out these DIVs and associated scripts in the final product -->
   <div id="boundbox">Bounds:<div id="current-bounds"></div></div>
@@ -221,9 +222,7 @@
   
   <!--THis places the page footer-->
   <footer id="pagefooter">
-    <p>Curated by Christopher Miller, 
-      <br>Appalachian Center, Berea College and College of Communication &amp; Information, University of Kentucky, 2020. 
-      <br>Contact <a href="mailto:millerc@berea.edu">millerc@berea.edu</a>
+    <p>&nbsp;<br>Curated by Christopher&nbsp;Miller, Appalachian&nbsp;Center, Berea&nbsp;College and College&nbsp;of&nbsp;Communication&nbsp;&amp;&nbsp;Information, University&nbsp;of&nbsp;Kentucky,&nbsp;2020. |&nbsp;Contact:&nbsp;<a href="mailto:millerc@berea.edu">millerc@berea.edu</a>
     </p>
   </footer>
   
@@ -251,9 +250,18 @@
     var currentBoundsStr = currentBounds.toBBoxString();
     var layerToRemove = null;
     
-  // Initialize Interpretion Items List ---------------------------
-    const initIntHd = document.getElementById("interphead").innerHTML,
-          initIntBdy = document.getElementById("interpbody").innerHTML;
+  // Initialize Interpretion Sidebar Elements ----------------------
+    const initIntHD = document.getElementById("interpHD").innerHTML,
+          initIntSHID = null, //empty on home screen
+          initIntID = null, //empty on home screen
+          initIntSHbody = null, //empty on home screen
+          initIntBody = document.getElementById("interpbody").innerHTML,
+          initIntSHLnk = null, //empty on home screen
+          initIntLnk = null, //empty on home screen
+          clkIntSHID = "Map Info:",
+          clkIntSHbody = "Interpretation:",
+          clkIntSHLnk = "Links:"
+          ;
     
     const frostPt = L.latLng(37.5, -84), 
           frostLbl = "Appalachia as a People",
@@ -365,8 +373,9 @@
         document.getElementById("current-center").innerText = currentCenter;
       });
     
-    // Create and Place Markers into Marker Layer ----------------
+    // Create and Place Markers into Marker Group ----------------
     
+    // Initialize the Marker Group
     var IntMarkerGrp = L.layerGroup();
     
     // Place William G. Frost 1890s Point Marker
@@ -384,18 +393,19 @@
     // Place Proclamation of 1763
     const proclamSym = L.polyline(proclamLn, {
       color:'cornflowerblue',
-      weight:6,
-      opacity:0.8,
-      dashArray:'8',
+      weight:8,
+      opacity:0.7,
+      dashArray:'16',
       lineCap: 'round',
       // zIndex:6
     }).bindTooltip(proclamLbl).addTo(IntMarkerGrp);
     // Place Fenneman Physiographic Marker
       const physioSym = L.marker(physioPt).bindTooltip(physioLbl).addTo(IntMarkerGrp);
     
+    // Put the entire Marker Group on the Map
     IntMarkerGrp.addTo(map);
 
-    // Define the Actions for Clicks -------------------
+    // Define the Actions for Clicks ------------------------------
     // Define "Show All Markers" Button Actions
     document
       .getElementById("showall")
@@ -404,11 +414,14 @@
         map.flyTo(InitCtrPt, InitZoom);
         //remove overlay
         layerToRemove.removeFrom(map);
-        // reload Init into interparea
-        interphead.innerHTML = initIntHd;
-        interpID.innerHTML = null; //empty on home screen
-        interpbody.innerHTML = initIntBdy;
-        interpLnk.innerHTML = null; //empty on home screen
+        // Restore Initial Values into interparea
+        interpHD.innerHTML = initIntHD;
+        interpSHID.innerHTML = initIntSHID;
+        interpID.innerHTML = initIntID;
+        interpSHbody.innerHTML = initIntSHbody;
+        interpbody.innerHTML = initIntBody;
+        interpSHLnk.innerHTML = initIntSHLnk;
+        interpLnk.innerHTML = initIntLnk;
         //put the markers back on the map
         IntMarkerGrp.addTo(map);
       });
@@ -422,9 +435,12 @@
       var frostOverlay = L.imageOverlay(frostOverlayURL, [[27.4, -87],[49,-70]], {opacity:0.8, attribution: frostAttr}).addTo(map);
       layerToRemove = frostOverlay;
       // load content into interparea
-      interphead.innerHTML = frostIntHd;
+      interpHD.innerHTML = frostIntHd;
+      interpSHID.innerHTML = clkIntSHID;
       interpID.innerHTML = frostIntID;
+      interpSHbody.innerHTML = clkIntSHbody;
       interpbody.innerHTML = frostIntBdy;
+      interpSHLnk.innerHTML = clkIntSHLnk;
       interpLnk.innerHTML = frostIntLnk;
     });  
  
@@ -437,9 +453,12 @@
       var proclamOverlay = L.imageOverlay(proclamOverlayURL, [[26.4, -89],[44,-73]], {opacity:0.9, attribution: proclamAttr}).addTo(map);
       layerToRemove = proclamOverlay;
       // load content into interparea
-      interphead.innerHTML = proclamIntHd;
+      interpHD.innerHTML = proclamIntHd;
+      interpSHID.innerHTML = clkIntSHID;
       interpID.innerHTML = proclamIntID;
+      interpSHbody.innerHTML = clkIntSHbody;
       interpbody.innerHTML = proclamIntBdy;
+      interpSHLnk.innerHTML = clkIntSHLnk;
       interpLnk.innerHTML = proclamIntLnk;
     });
 
@@ -452,9 +471,11 @@
       var latcheeOverlay = L.imageOverlay(latcheeOverlayURL, [[25.3, -89],[38,-75]], {opacity:0.9, attribution: latcheeAttr}).addTo(map);
       layerToRemove = latcheeOverlay;
       // load content into interparea
-      interphead.innerHTML = latcheeIntHd;
+      interpHD.innerHTML = latcheeIntHd;
+      interpSHID.innerHTML = clkIntSHID;
       interpID.innerHTML = latcheeIntID;
       interpbody.innerHTML = latcheeIntBdy;
+      interpSHLnk.innerHTML = clkIntSHLnk;
       interpLnk.innerHTML = latcheeIntLnk;
     });
 
@@ -467,9 +488,11 @@
       var physioOverlay = L.imageOverlay(physioOverlayURL, [[25, -98],[48,-69]], {opacity:0.9, attribution: physioAttr}).addTo(map);
       layerToRemove = physioOverlay;
       // load content into interparea
-      interphead.innerHTML = physioIntHd;
+      interpHD.innerHTML = physioIntHd;
+      interpSHID.innerHTML = clkIntSHID;
       interpID.innerHTML = physioIntID;
       interpbody.innerHTML = physioIntBdy;
+      interpSHLnk.innerHTML = clkIntSHLnk;
       interpLnk.innerHTML = physioIntLnk;
     });
 
@@ -482,9 +505,11 @@
       var unknownOverlay = L.imageOverlay(unknownOverlayURL, [[25.3, -86.4],[35.5,-79.4]], {opacity:0.6, attribution: physioAttr}).addTo(map);
       layerToRemove = unknownOverlay;
       // load content into interparea
-      interphead.innerHTML = unknownIntHd;
+      interpHD.innerHTML = unknownIntHd;
+      interpSHID.innerHTML = clkIntSHID;
       interpID.innerHTML = unknownIntID;
       interpbody.innerHTML = unknownIntBdy;
+      interpSHLnk.innerHTML = clkIntSHLnk;
       interpLnk.innerHTML = unknownIntLnk;
     });
 
