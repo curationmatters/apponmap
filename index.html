@@ -31,10 +31,12 @@
   header {
     position: static;
     background-color: darkseagreen;
-    padding: 4px;
-    height: 90px; 
-    border-bottom: 20px;
-    border-bottom-color: maroon:
+    padding: 2px 4px 4px;
+    height: 88px;
+    border-bottom-style: solid;
+    border-bottom-color: maroon;
+    border-bottom-width: 18px
+    
   }
     
   header h2 {
@@ -59,26 +61,29 @@
 
   #contentarea {
     width: 100%;
-    margin: 0;
+    height: 560px;
+    margin: 0px;
     padding: 0px;
   }  
     
   #maparea {
     float: left;
-    width: 70%;
-    max-width: 900px;
+    width: 60%;
+    max-width: 800px;
     height: 500px; /*leaflet requires fixed height*/
     min-width: 600px;  /*not sure I need this min*/
   }
     
   .interp {
     float: left;
-    width: 30%;
-    min-width: 200px; /* not sure I need this min*/
-    max-width: 400px;
+    width: 40%;
+    min-width: 300px; /* not sure I need this min*/
+    max-width: 500px;
     height: 500px; /*leaflet requires fixed height*/
     overflow-y: scroll;
     padding: 0px 12px 2px;
+    border: 2px;
+    border-color: black;
   }
   
   .interp h3 {
@@ -97,7 +102,7 @@
       line-height: 1.5;
     }
     
-/*these are temporary objects just for development*/
+/*these are temporary objects just for development
   #boundbox {
       position: absolute;
       left: 10px;
@@ -124,20 +129,20 @@
       background: whitesmoke;
       padding: 8px;
   } 
+    */
     
   #showallbutton {
       position: relative;
       left: 50px;
-      top: 66px;
+      top: 59px;
       z-index: 1000;
-      /*padding: 8px 12px; */
     }
     
-  #showall {
-      font-size: 18pt;
-      background-color: whitesmoke;
+  .button {
+      border: 1px solid grey;
+      font-size: 24px;
       color: maroon;
-      border-radius: 10;
+      padding: 10 10 10;
     }
     
   /* Style the footer */
@@ -164,40 +169,36 @@
   <div id="container">
   <header id="pageheader">
     <h2 id="headertitle">Putting App' on the Map: A&nbsp;Cartographic&nbsp;Exploration of&nbsp;the Making&nbsp;of&nbsp;Appalachia</h2>
-  <!--  
-  <section class="topnav">
-  </section> -->
   </header>
-  
-  <!-- Creates the Navigation bar -->
-
+    
   <!-- Creates the main content area consisting of left and right panes -->
   <section id="contentarea">
-    <!-- This is the left pane where the map resides -->
-    <div id="showallbutton"><button id="showall">Show All Markers</button>
-    </div>
-    <section id="maparea"></section>
-    <!-- This is the right pane wher the interpretation resides -->
-    <!-- This is the show all button -->
-    <section class="interp" id="interparea">
-      <h3 id="interpHD">What&nbsp;&amp;&nbsp;Where is&nbsp;Appalachia?</h3>
-      <h4 id="interpSHID"></h4>
-      <div id="interpID"></div>
-      <h4 id="interpSHbody"></h4>
-      <div id="interpbody">
-      <p>To most people Appalachia is a fuzzy region of the  eastern U.S. People typically think it exists but if you ask 10 people what and were Appalachia is, you will probably get 10 different answers. This is because the region of Appalachia is socially constructed. It is a not a static place defined by clear boundaries. Over centuries many different people and events have built out collective understanding of the region, yet each person's understanding (or misunderstanding!) of these events adds up to a different version of Appalachia.</p> 
-      <p>Critical regionalism suggests that it is in communicating about the region through texts that we generate and regenerate the Appalachia over and over again. These texts come in many forms: stories, maps, art, and artifacts are some of the most common.</p>
-      <p>This interactive map explores some of the historical, and especially cartographic, events that have contributed to the creation of this tangible, yet elusive region.</p>
-      </div>
-      <h4 id="interpSHLnk"></h4>
-      <div id=interpLnk></div>
-    </section>
+  <!-- This is the left pane where the map resides -->
+  <div id="showallbutton"><button class="button" id="showall">Show All Markers</button></div>
+  <section id="maparea"></section>
+  <!-- This is the right pane wher the interpretation resides -->
+  <!-- This is the show all button -->
+  <section class="interp" id="interparea">
+  <h3 id="interpHD">What&nbsp;&amp;&nbsp;Where is&nbsp;Appalachia?</h3>
+  <h4 id="interpSHID"></h4>
+  <div id="interpID"></div>
+  <h4 id="interpSHbody"></h4>
+  <div id="interpbody">
+  <p>To most people Appalachia is a fuzzy region of the  eastern U.S. People typically think it exists but if you ask 10 people what and were Appalachia is, you will probably get 10 different answers. This is because the region of Appalachia is socially constructed. It is a not a static place defined by clear boundaries. Over centuries many different people and events have built out collective understanding of the region, yet each person's understanding (or misunderstanding!) of these events adds up to a different version of Appalachia.</p>
+  <p>Critical regionalism suggests that it is in communicating about the region through texts that we generate and regenerate the Appalachia over and over again. These texts come in many forms: stories, maps, art, and artifacts are some of the most common.</p>
+  <p>This interactive map explores some of the historical, and especially cartographic, events that have contributed to the creation of this tangible, yet elusive region.</p>
+  </div>
+  <h4 id="interpSHLnk"></h4>
+  <div id=interpLnk></div>
+  </section>
   </section> <!-- End of DIV contentarea-->
   
   <!-- these are temporary displays of map properties while working comment out these DIVs and associated scripts in the final product -->
+  <!--
   <div id="boundbox">Bounds:<div id="current-bounds"></div></div>
   <div id="centerbox">Center:<div id="current-center"></div></div>
   <div id="zoombox">Zoom:<div id="current-zoom"></div></div>
+  -->
   
   <!--THis places the page footer-->
   <footer id="pagefooter">
@@ -286,7 +287,7 @@
           unknownIntZm = 6.5,
           unknownOverlayURL = "./images/1562_Gutierrez_inset.jpg",
           unknownAttr = "Inset: Library of Congress",
-          unknownIntHd = "Appalachia as Unknown Interior of N. America",
+          unknownIntHd = "Appalachia&nbsp;as Unknown&nbsp;Interior of&nbsp;N.&nbsp;America",
           unknownIntID = "<p>Title: <i>Americae sive qvartae orbis partis nova et exactissima descriptio</i><br>by Gutiérrez, Diego, 1562</p>",
           unknownIntBdy = "<p>In 1562 this was the largest engraved map of America produced and would remain so for 100 years. It was produced to as a display map to assert or celebrate Spanish lands the Americas.  As such, it asserted primiarly generalities include the presence of large region labelled Apalchen in the North American interior. This map may the be earliest representation of a vauge region named something like Appalachia.</p>",
           unknownIntLnk = "<p><a href=http://hdl.loc.gov/loc.gmd/g3290.ct000342 target=_blank>View the entire 1562 map at the Library of Congress.</a></p>"
@@ -298,31 +299,44 @@
           physioIntZm = 5.8,
           physioOverlayURL = "./images/Fenneman_1917_Map_inset.jpg",
           physioAttr = "Inset: National Academy of Sciences",
-          physioIntHd = "Appalachia as Physiographic Divison",
+          physioIntHd = "Appalachia&nbsp;as Physiographic&nbsp;Divison",
           physioIntID = "<p>Map: <i>Physiographic Divisions of the United States</i><br>by Fenneman, Nevin M., 1917</p>",
           physioIntBdy = "<p>Fenniman's influential research classified regions of the world taxonomically, much like biologists classified living things. Focusing on morphology (landforms) rather than climate or location as well as shared geological history, Fenniman's system classified the world into <i>divisions</i> which were subdivided into <i>provinces</i> which were further subdivided into <i>sections</i>.</p> <p>Fenniman's classification of Appalachia remains in use.  The <i>Appalachian Highlands</i> division includes several physiographic provinces, notably 4 - the piedmont, 5 - the Blue Ridge, 6 - the ridge &amp; valley, and 8 - the plateaus; which are in turn divided into sections a, b, c, etc.</p>",
           physioIntLnk = "<p><a href=https://doi.org/10.1073/pnas.3.1.17 target=_blank>Fenneman, N.M. (1917) Physiographic Subdivision of the United States. <i>Proceedings of the National Academy of Sciences</i>, Jan 1917, <i>3</i>(1) pp.17-22</a></p>"
           ;
     
-    /* Generic Version of the Interpetive Items Data
-    const unknownPt = L.latLng(34.5, -84.3), 
-          unknownLbl = "Appalachia as Unknown Interior",
-          unknownIntCtr = L.latLng(37.5, -83),
-          unknownIntZm = 4.5,
-          unknownOverlayURL = "./images/FrostMap1899_rot.png",
-          unknownAttr = "Inset: asdfasdf",
-          unknownIntHd = "Appalachia as Unknown Interior of N. America",
-          unknownIntID = "<p>Map: adfas<br>by asdfasdf, ca. 9999</p>",
-          unknownIntBdy = "<p>asdf . . .</p> <p>asdf</p>",
-          unknownIntLnk = "<p><a href=https://digitalcollections.nypl.org/items/510d47da-f148-a3d9-e040-e00a18064a99 target=_blank>View the entire 1763 map at the New York Public Library.</a></p>"
+    const campbellPt = L.latLng(35.039444, -83.956944), 
+          campbellLbl = "Appalachia as Counties",
+          campbellIntCtr = L.latLng(36.597026, -83.190402),
+          campbellIntZm = 7.7,
+          campbellOverlayURL = "./images/1919Campbell_web_rot.png",
+          campbellAttr = "Inset: Russell Sage Foundation",
+          campbellIntHd = "Appalachia&nbsp;as Counties",
+          campbellIntID = "<p>Map: <i>The Southern Highland Region</i><br>by Campbell, John C., 1919</p>",
+          campbellIntBdy = "<p> This map is the earliest to define Appalachia as a set of counties.</p> <p>During the early 20th century, social workers, educators, medical workers, and missionaries came to Appalachia in large numbers to address the region's differences from other parts of the U.S. Some of these differences were real, such as access to medical care and education. Others were percieved. This movement, led by social scientists, trained educators, foundations, and government agencies desired a clear and systemic definition of Appalachia.  Distributing workers and money called for clear boundaries.  Educator John C. Campbell and the Conference of Southern Mountain Workers developed this defintion. The county approach is still widely used to define the region.</p>",
+          campbellIntLnk = "<p>This map was first published in <a href=https://archive.org/details/southernhighland00camp target=_blank>Campbell's <i>The Souther Highlander and His Homeland</i>, 1921, Russel Sage Foundation</a>. (In the Internet Archive version the map is found between pp. 264-65.)</p><p> <a href=https://en.wikipedia.org/wiki/John_C._Campbell target=_blank>Read about John C. Campbell on Wikipedia.</a></p>"
           ;
-    */
     
+    const arcPt = L.latLng(38.9101, -77.0147), 
+          arcLbl = "Appalachia as Depressed Region",
+          arcIntCtr = L.latLng(38.272944, -82.867934),
+          arcIntZm = 6.9,
+          arcOverlayURL = "./images/arc_FY2010_rot.png",
+          arcAttr = "Inset: ARC, arc.gov",
+          arcIntHd = "Appalachia&nbsp;as Depressed Region",
+          arcIntID = "<p>Map: <i>County Economic Status in Appalachia, Fiscal Year 2010</i><br>by Appalachian Regional Commission</p>",
+          arcIntBdy = "<p>The Appalachian Regional Commission is a federal agency created in 1965 to coordinate and promote economic development in Appalachia</p> <p>The legislation which created the ARC defines Appalachia as a list of 420 counties in 13 states. To do its work, the ARC gathers, analyzes, and publishes extensive data about each county. A part of its methodology is to calculate and economic status index for each county and measure its place within all the 3,00+ counties in the U.S.  On the ARC's annual economic status maps counties in the bottom 10% of all U.S. counties, labelled as <i>Distressed</i> are colored red, those in the top 10%, labelled as <i>Attainment</i> are colored blue.  The full key is below:</p><p><img src=./images/econ_index_legend.jpg width=661 height=183></p>",
+          arcIntLnk = "<p><a href=http://arc.gov target=_blank>The Appalachian Regional Commission, a federal agency</a></p> <p><a href=https://www.arc.gov/wp-content/uploads/2020/06/County-Economic-Status_FY2010_Map-1.pdf target=_blank>View the entire map at the ARC</a></p>."
+          ;
+    
+  
   // output Initial bounds to screen
   // should be removed for final deliverable
+    /*
         document.getElementById("current-bounds").innerText = currentBoundsStr;
         document.getElementById("current-zoom").innerText = currentZoom;
         document.getElementById("current-center").innerText = currentCenter; 
+      */
     
   // use leaflet to build the map ---------------------------
      // create map instance
@@ -343,6 +357,7 @@
     
     // convienence function to show current map status
     // should be removed for final deliverable
+    /*
       map.on("moveend", () => {
         currentBoundsStr = map.getBounds().toBBoxString();
         currentCenter = map.getCenter();        
@@ -352,6 +367,7 @@
         document.getElementById("current-zoom").innerText = currentZoom;
         document.getElementById("current-center").innerText = currentCenter;
       });
+      */
     
     // Create and Place Markers into Marker Group ----------------
     
@@ -362,6 +378,10 @@
     const frostSym = L.marker(frostPt).bindTooltip(frostLbl).addTo(IntMarkerGrp);
     // Place Apalachee 1500s Point Marker
     const latcheeSym = L.marker(latcheePt).bindTooltip(latcheeLbl).addTo(IntMarkerGrp);
+    // Place Campbell 1919 Point Marker
+    const campbellSym = L.marker(campbellPt).bindTooltip(campbellLbl).addTo(IntMarkerGrp);
+    // Place ARC Point Marker
+    const arcSym = L.marker(arcPt).bindTooltip(arcLbl).addTo(IntMarkerGrp);
     // Place Unknown 1600s Point Marker
     const unknownSym = L.circle(unknownPt, {
       radius:200000, 
@@ -454,6 +474,7 @@
       interpHD.innerHTML = latcheeIntHd;
       interpSHID.innerHTML = clkIntSHID;
       interpID.innerHTML = latcheeIntID;
+      interpSHbody.innerHTML = clkIntSHbody;
       interpbody.innerHTML = latcheeIntBdy;
       interpSHLnk.innerHTML = clkIntSHLnk;
       interpLnk.innerHTML = latcheeIntLnk;
@@ -471,6 +492,7 @@
       interpHD.innerHTML = physioIntHd;
       interpSHID.innerHTML = clkIntSHID;
       interpID.innerHTML = physioIntID;
+      interpSHbody.innerHTML = clkIntSHbody;
       interpbody.innerHTML = physioIntBdy;
       interpSHLnk.innerHTML = clkIntSHLnk;
       interpLnk.innerHTML = physioIntLnk;
@@ -482,15 +504,53 @@
       map.flyTo(unknownIntCtr, unknownIntZm);
       // load or display another layer or on map  
       IntMarkerGrp.removeFrom(map);
-      var unknownOverlay = L.imageOverlay(unknownOverlayURL, [[25.3, -86.4],[35.5,-79.4]], {opacity:0.6, attribution: physioAttr}).addTo(map);
+      var unknownOverlay = L.imageOverlay(unknownOverlayURL, [[25.3, -86.4],[35.5,-79.4]], {opacity:0.9, attribution: physioAttr}).addTo(map);
       layerToRemove = unknownOverlay;
       // load content into interparea
       interpHD.innerHTML = unknownIntHd;
       interpSHID.innerHTML = clkIntSHID;
       interpID.innerHTML = unknownIntID;
+      interpSHbody.innerHTML = clkIntSHbody;
       interpbody.innerHTML = unknownIntBdy;
       interpSHLnk.innerHTML = clkIntSHLnk;
       interpLnk.innerHTML = unknownIntLnk;
+    });
+
+     // Define Action Click on App As Counties
+    campbellSym.on('click', () => {
+      // zoom to desired bounds
+      map.flyTo(campbellIntCtr, campbellIntZm);
+      // load or display another layer or on map  
+      IntMarkerGrp.removeFrom(map);
+      var campbellOverlay = L.imageOverlay(campbellOverlayURL, [[30.6, -88.7],[42,-72.8]], {opacity:0.7, attribution: campbellAttr}).addTo(map);
+      layerToRemove = campbellOverlay;
+      // load content into interparea
+      interpHD.innerHTML = campbellIntHd;
+      interpSHID.innerHTML = clkIntSHID;
+      interpID.innerHTML = campbellIntID;
+      interpSHbody.innerHTML = clkIntSHbody;
+      interpbody.innerHTML = campbellIntBdy;
+      interpSHLnk.innerHTML = clkIntSHLnk;
+      interpLnk.innerHTML = campbellIntLnk;
+    });
+
+  
+     // Define Action Click on ARC
+    arcSym.on('click', () => {
+      // zoom to desired bounds
+      map.flyTo(arcIntCtr, arcIntZm);
+      // load or display another layer or on map  
+      IntMarkerGrp.removeFrom(map);
+      var arcOverlay = L.imageOverlay(arcOverlayURL, [[31, -91.3],[44,-74.6]], {opacity:0.7, attribution: arcAttr}).addTo(map);
+      layerToRemove = arcOverlay;
+      // load content into interparea
+      interpHD.innerHTML = arcIntHd;
+      interpSHID.innerHTML = clkIntSHID;
+      interpID.innerHTML = arcIntID;
+      interpSHbody.innerHTML = clkIntSHbody;
+      interpbody.innerHTML = arcIntBdy;
+      interpSHLnk.innerHTML = clkIntSHLnk;
+      interpLnk.innerHTML = arcIntLnk;
     });
 
   </script>
