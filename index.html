@@ -184,9 +184,9 @@
   <div id="interpID"></div>
   <h4 id="interpSHbody"></h4>
   <div id="interpbody">
-  <p>To most people Appalachia is a fuzzy region of the  eastern U.S. People typically think it exists but if you ask 10 people what and were Appalachia is, you will probably get 10 different answers. This is because the region of Appalachia is socially constructed. It is a not a static place defined by clear boundaries. Over centuries many different people and events have built out collective understanding of the region, yet each person's understanding (or misunderstanding!) of these events adds up to a different version of Appalachia.</p>
-  <p>Critical regionalism suggests that it is in communicating about the region through texts that we generate and regenerate the Appalachia over and over again. These texts come in many forms: stories, maps, art, and artifacts are some of the most common.</p>
-  <p>This interactive map explores some of the historical, and especially cartographic, events that have contributed to the creation of this tangible, yet elusive region.</p>
+  <p>To most people Appalachia is a fuzzy region of the  eastern U.S. People usually know it exists but if you ask 10 people what and were Appalachia is, you will probably get 10 different answers. This is because the region of Appalachia is socially constructed. It is not a place defined by clear boundaries. Over centuries,  different people and events have built our collective understanding of the region, yet each person's understanding (or misunderstanding!) of these events adds up to a different version of Appalachia.</p>
+  <p><em>Critical regionalism</em> suggests that while communicating about the region, we generate and regenerate Appalachia over and over again, each time to serve different purposes. Such communications occurs in many forms. Stories, maps, and art are some of the most common.</p>
+  <p>This interactive map presents some of the cartographic events that have contributed to the creation of this tangible, yet elusive region.</p>
   </div>
   <h4 id="interpSHLnk"></h4>
   <div id=interpLnk></div>
@@ -224,7 +224,7 @@
   <script>
   // initialize map properties constants
     const InitZoom = 4.9, InitZmSnp = 0.1;
-    const InitCtrPt = L.latLng(38, -88);
+    const InitCtrPt = L.latLng(37.5, -84);
     const MaxBounds = L.latLngBounds(L.latLng(20, -130),L.latLng(50, -54));
   // initialize map properties working varaibles 
     var currentBounds = MaxBounds, currentZoom = InitZoom, currentCenter = InitCtrPt;
@@ -252,7 +252,7 @@
           frostAttr = "Inset: Berea College",
           frostIntHd = "Appalachia as<br>&quot;Our Contemporary Ancestors&quot;",
           frostIntID = "<p>Title: <i>Mountain Region of the South</i><br>by William G. Frost, ca. 1899</p>",
-          frostIntBdy = "<p>In the summer of 1893, W.G. Frost, a college president and Greek scholar, rode on horseback into the Eastern Kentucky Mountains. He was looking for students but he found a place that ignited his imagination. Believing he discovered something new, Frost named the region &quot;Appalachia.&quot;</p><p>Frost wrote extensively about &quot;Appalachian America&quot; describing Appalachian people as Colonial Americans frozen time by isolation or &quot;our contemporary ancestors.&quot; Frost's writings were influential at creating the perception that Appalachia consisted of white, Christian, isolated, impoverished,  peculiar mountain people. The stereotype ignored the true diversity fo the region.</p>",
+          frostIntBdy = "<p>In the summer of 1893, W.G. Frost, a college president and Greek scholar, rode on horseback into the Eastern Kentucky Mountains. He was looking for students but he entered a place that ignited his imagination. Frost was one of the earliest to distinguish between a <i>region called Appalachia</i> as distinct from the Appalachian Mountains.</p><p>Frost wrote extensively about &quot;Appalachian America&quot; as a region distinguished by the social and cultural characteristics of the people living there. He described Appalachian people as colonial Americans frozen in time by isolation and coined the term &quot;our contemporary ancestors&quot; to communicate this idea. Frost's writings were influential at creating the perception that Appalachia consisted of white, Christian, isolated, impoverished, peculiar mountain people. His stereotype ignored the true diversity of the region.</p>",
           frostIntLnk = "<p><a href=https://berea.access.preservica.com/uncategorized/IO_76228f7a-b586-406b-89d0-d2e7f6ed9372/ target=_blank>Frost's article in <i>Atlantic Monthly</i>, March 1899, in the Berea College Archives</a></p>"
           ;
     
@@ -262,9 +262,9 @@
           latcheeIntZm = 7,
           latcheeOverlayURL = "./images/1732_Chatelain_Appalachee_Inset.jpg",
           latcheeAttr = "Inset: NY Public Library Digital Collections",
-          latcheeIntHd = "The Appalachee People<br>Who Gave their Name to Appalachia",
+          latcheeIntHd = "The Apalachee People,<br>Who Gave their Name to Appalachia",
           latcheeIntID = "<p>Title: <i>Carte contenant le royaume du Mexique et la Floride: dressée sur les meilleures observations & sur les mémoires les plus nouveaux</i><br>by Chatelain, Henri Abraham, 1732</p>",
-          latcheeIntBdy = "<p>The Apalachee people were a native American society who occupied an area around present day Tallahassee, Fla. at the arrival of Spanish explorers in 1528. They were the southernmost extent of Mississippian culture.</p><p>As the Spanish encroached and setup missions, that region become known to some Europeans as the Apalachee Province. Caught between the abuses of the Spanish and the British Colony of Carolina, by the early 1700s, the Apalachee people were scattered and decimated.  This map and a 1710 map by Amstel are the earliest to label the southern range of the mountains and a region for the Apalachee. </p>",
+          latcheeIntBdy = "<p>On many early maps of North America, you will find names similar to &quot;Appalachia&quot; in the area around present day Florida. These names represent the Apalachee people, a native American society who lived around present day Tallahassee at the arrival of Spanish explorers in 1528. The Apalachee were the southernmost extent of Mississippian culture.</p><p>That region become known as the Apalachee Province. Caught between Spanish encroaching from the south and the British Colony of Carolina expanding from the east, by the early 1700s, the Apalachee people were scattered and decimated.  Because some Apalachee moved north into interior foothills, many early European maps labelled the southern part of the mountains for the Apalachee. As centuries passed, the name stuck.</p>",
           latcheeIntLnk = "<p><a href=https://digitalcollections.nypl.org/items/61ccf6d0-f828-0132-109d-58d385a7b928 target=_blank>View the entire 1732 map at the New York Public Library.</a><br><a href=https://en.wikipedia.org/wiki/Apalachee target=_blank>Learn more about the Apalachee at Wikipedia</p>"
           ;
     
@@ -272,25 +272,25 @@
           // SW to NE is order of points on this polyline
           proclamLbl = "Appalachia as Boundary",
           proclamIntCtr = L.latLng(36.906779, -80.845497),
-          proclamIntZm = 6.4,
+          proclamIntZm = 6.2,
           proclamOverlayURL = "./images/Gibson1763_crop.jpg",
           proclamAttr = "Inset: NY Public Library Digital Collections",
           proclamIntHd = "Appalachia as Boundary",
           proclamIntID = "<p>Title: <i>The British governments in Nth. America: laid down agreeable to the proclamation of Octr. 7, 1763<i/>;<br>by J.G. Gibson, 1763</p>",
-          proclamIntBdy = "<p>asdfasdf. . . .</p> <p>The proclamation made Appalachia boundary between the Colonies to the east and the &quot;Lands reserved for the Indians&quot; in the west, an idea clearly reflected in this map.</p>",
-          proclamIntLnk = "<p><a href=https://digitalcollections.nypl.org/items/510d47da-f148-a3d9-e040-e00a18064a99 target=_blank>View the entire 1763 map at the New York Public Library.</a></p>"
+          proclamIntBdy = "<p>For Europeans on the east coast of North America, the mountains were a natural boundary that slowed the spread west. At the conclusion of the French and Indian War, the British government attempted to also make the mountains an official border. The Proclamation of 1763 declared the west side of the mountains to be &quot;lands reserved for the Indians&quot; and the east side for the British colonists. The mountains, however, were not impenetrable. </p>",
+          proclamIntLnk = "<p><a href=https://digitalcollections.nypl.org/items/510d47da-f148-a3d9-e040-e00a18064a99 target=_blank>View the entire 1763 Gibson map at the New York Public Library.</a></p>"
           ;
     
     const unknownPt = L.latLng(34.5, -84.3), 
           unknownLbl = "Appalachia as Unknown Interior",
-          unknownIntCtr = L.latLng(32.380141, -82.630827),
-          unknownIntZm = 6.5,
+          unknownIntCtr = L.latLng(33, -83),
+          unknownIntZm = 5.6,
           unknownOverlayURL = "./images/1562_Gutierrez_inset.jpg",
           unknownAttr = "Inset: Library of Congress",
-          unknownIntHd = "Appalachia&nbsp;as Unknown&nbsp;Interior of&nbsp;N.&nbsp;America",
+          unknownIntHd = "Appalachia&nbsp;as the Unknown&nbsp;Interior of&nbsp;N.&nbsp;America",
           unknownIntID = "<p>Title: <i>Americae sive qvartae orbis partis nova et exactissima descriptio</i><br>by Gutiérrez, Diego, 1562</p>",
-          unknownIntBdy = "<p>In 1562 this was the largest engraved map of America produced and would remain so for 100 years. It was produced to as a display map to assert or celebrate Spanish lands the Americas.  As such, it asserted primiarly generalities include the presence of large region labelled Apalchen in the North American interior. This map may the be earliest representation of a vauge region named something like Appalachia.</p>",
-          unknownIntLnk = "<p><a href=http://hdl.loc.gov/loc.gmd/g3290.ct000342 target=_blank>View the entire 1562 map at the Library of Congress.</a></p>"
+          unknownIntBdy = "<p>During the early period of European colonization, the interior of North America was largely unknown them. Europeans heard stories from the native peoples that included descriptions of unseen mountains and the names of unencountered people groups. This 1562 Spanish map was made, not for navigation, but to celebrate the Spanish colonies in the Americas. Deep in the interior are mountains and a place labelled &quot;Apalchen&quot;. This may be the earliest representation on a map of a place with a name similar to Appalachia.</p>",
+          unknownIntLnk = "<p><a href=http://hdl.loc.gov/loc.gmd/g3290.ct000342 target=_blank>View the entire 1562 Gutiérrez map at the Library of Congress online.</a></p>"
           ;
     
     const physioPt = L.latLng(38.045522, -80.064486), 
@@ -301,7 +301,7 @@
           physioAttr = "Inset: National Academy of Sciences",
           physioIntHd = "Appalachia&nbsp;as Physiographic&nbsp;Divison",
           physioIntID = "<p>Map: <i>Physiographic Divisions of the United States</i><br>by Fenneman, Nevin M., 1917</p>",
-          physioIntBdy = "<p>Fenniman's influential research classified regions of the world taxonomically, much like biologists classified living things. Focusing on morphology (landforms) rather than climate or location as well as shared geological history, Fenniman's system classified the world into <i>divisions</i> which were subdivided into <i>provinces</i> which were further subdivided into <i>sections</i>.</p> <p>Fenniman's classification of Appalachia remains in use.  The <i>Appalachian Highlands</i> division includes several physiographic provinces, notably 4 - the piedmont, 5 - the Blue Ridge, 6 - the ridge &amp; valley, and 8 - the plateaus; which are in turn divided into sections a, b, c, etc.</p>",
+          physioIntBdy = "<p>Fenniman's influential research classified regions of the world taxonomically, much like biologists classified living things. Focusing on morphology (landforms) and shared geological origin, Fenniman's system organized the world into <i>divisions</i> which were subdivided into <i>provinces</i> which were further subdivided into <i>sections</i>.</p> <p>Fenniman's classification of Appalachia remains in common use. As this map shows, the <i>Appalachian Highlands Division</i> is divided into several physiographic provinces, notably 4 - The Piedmont, 5 - The Blue Ridge, 6 - The Ridge &amp; Valley Province, and 8 - the Appalachian Plateaus.</p>",
           physioIntLnk = "<p><a href=https://doi.org/10.1073/pnas.3.1.17 target=_blank>Fenneman, N.M. (1917) Physiographic Subdivision of the United States. <i>Proceedings of the National Academy of Sciences</i>, Jan 1917, <i>3</i>(1) pp.17-22</a></p>"
           ;
     
@@ -313,8 +313,8 @@
           campbellAttr = "Inset: Russell Sage Foundation",
           campbellIntHd = "Appalachia&nbsp;as Counties",
           campbellIntID = "<p>Map: <i>The Southern Highland Region</i><br>by Campbell, John C., 1919</p>",
-          campbellIntBdy = "<p> This map is the earliest to define Appalachia as a set of counties.</p> <p>During the early 20th century, social workers, educators, medical workers, and missionaries came to Appalachia in large numbers to address the region's differences from other parts of the U.S. Some of these differences were real, such as access to medical care and education. Others were percieved. This movement, led by social scientists, trained educators, foundations, and government agencies desired a clear and systemic definition of Appalachia.  Distributing workers and money called for clear boundaries.  Educator John C. Campbell and the Conference of Southern Mountain Workers developed this defintion. The county approach is still widely used to define the region.</p>",
-          campbellIntLnk = "<p>This map was first published in <a href=https://archive.org/details/southernhighland00camp target=_blank>Campbell's <i>The Souther Highlander and His Homeland</i>, 1921, Russel Sage Foundation</a>. (In the Internet Archive version the map is found between pp. 264-65.)</p><p> <a href=https://en.wikipedia.org/wiki/John_C._Campbell target=_blank>Read about John C. Campbell on Wikipedia.</a></p>"
+          campbellIntBdy = "<p>This map is the earliest to show Appalachia as a set of counties.</p> <p>During the early 20th century, social workers, educators, medical workers, and missionaries entered Appalachia in large numbers to address the region's differences from other parts of the U.S. Some of these differences were real, such as access to medical care and education. Others were percieved. This movement, led by social scientists, trained educators, foundations, and government agencies desired a clear and systematic definition of Appalachia.  Distributing workers and money called for clear boundaries.  Educator John C. Campbell and the Conference of Southern Mountain Workers developed the definition in this map. The county approach is still widely used to define the Appalachia.</p>",
+          campbellIntLnk = "<p>This map was first published in <a href=https://archive.org/details/southernhighland00camp target=_blank>Campbell's <i>The Southern Highlander and His Homeland</i>, 1921, Russel Sage Foundation</a>. (In the Internet Archive version the map is found between pp. 264-65.)</p><p> <a href=https://en.wikipedia.org/wiki/John_C._Campbell target=_blank>Read about John C. Campbell on Wikipedia.</a></p>"
           ;
     
     const arcPt = L.latLng(38.9101, -77.0147), 
@@ -324,8 +324,8 @@
           arcOverlayURL = "./images/arc_FY2010_rot.png",
           arcAttr = "Inset: ARC, arc.gov",
           arcIntHd = "Appalachia&nbsp;as Depressed Region",
-          arcIntID = "<p>Map: <i>County Economic Status in Appalachia, Fiscal Year 2010</i><br>by Appalachian Regional Commission</p>",
-          arcIntBdy = "<p>The Appalachian Regional Commission is a federal agency created in 1965 to coordinate and promote economic development in Appalachia</p> <p>The legislation which created the ARC defines Appalachia as a list of 420 counties in 13 states. To do its work, the ARC gathers, analyzes, and publishes extensive data about each county. A part of its methodology is to calculate and economic status index for each county and measure its place within all the 3,00+ counties in the U.S.  On the ARC's annual economic status maps counties in the bottom 10% of all U.S. counties, labelled as <i>Distressed</i> are colored red, those in the top 10%, labelled as <i>Attainment</i> are colored blue.  The full key is below:</p><p><img src=./images/econ_index_legend.jpg width=661 height=183></p>",
+          arcIntID = "<p>Map: <i>County Economic Status in Appalachia, Fiscal Year 2010</i><br>by The Appalachian Regional Commission</p>",
+          arcIntBdy = "<p>The Appalachian Regional Commission (ARC) is a federal agency created in 1965 to coordinate and promote economic development in Appalachia. Since that time it has published many data-driven maps of Appalachia. The ARC defines Appalachia as 420 counties in 13 states. To do its work, the ARC gathers, analyzes, and publishes extensive data about each county. A part of its methodology is to calculate an economic status index for each county and measure its rank within all the 3,000+ counties in the U.S.  On the ARC's annual economic status maps, counties ranking in the bottom 10% of all U.S. counties, labelled as <i>Distressed</i>. The full color key is below:</p><p><img src=./images/econ_index_legend.jpg width=661 height=183></p>",
           arcIntLnk = "<p><a href=http://arc.gov target=_blank>The Appalachian Regional Commission, a federal agency</a></p> <p><a href=https://www.arc.gov/wp-content/uploads/2020/06/County-Economic-Status_FY2010_Map-1.pdf target=_blank>View the entire map at the ARC</a></p>."
           ;
     
@@ -387,15 +387,15 @@
       radius:200000, 
       color:'cornflowerblue', 
       weight:1,
-      opacity:0.3,
+      opacity:0.4,
       // zIndex:4
     }).bindTooltip(unknownLbl).addTo(IntMarkerGrp);    
     // Place Proclamation of 1763
     const proclamSym = L.polyline(proclamLn, {
       color:'cornflowerblue',
-      weight:8,
-      opacity:0.7,
-      dashArray:'16',
+      weight:10,
+      opacity:0.8,
+      dashArray:'18',
       lineCap: 'round',
       // zIndex:6
     }).bindTooltip(proclamLbl).addTo(IntMarkerGrp);
@@ -504,7 +504,7 @@
       map.flyTo(unknownIntCtr, unknownIntZm);
       // load or display another layer or on map  
       IntMarkerGrp.removeFrom(map);
-      var unknownOverlay = L.imageOverlay(unknownOverlayURL, [[25.3, -86.4],[35.5,-79.4]], {opacity:0.9, attribution: physioAttr}).addTo(map);
+      var unknownOverlay = L.imageOverlay(unknownOverlayURL, [[26.8, -86.7],[37,-79.7]], {opacity:0.9, attribution: physioAttr}).addTo(map);
       layerToRemove = unknownOverlay;
       // load content into interparea
       interpHD.innerHTML = unknownIntHd;
