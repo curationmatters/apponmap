@@ -202,7 +202,7 @@
   
   <!--THis places the page footer-->
   <footer id="pagefooter">
-    <p>Curated by Christopher&nbsp;Miller, Appalachian&nbsp;Center, Berea&nbsp;College and College&nbsp;of&nbsp;Communication&nbsp;&amp;&nbsp;Information, University&nbsp;of&nbsp;Kentucky,&nbsp;2020. |&nbsp;Contact:&nbsp;<a href="mailto:millerc@berea.edu">millerc@berea.edu</a>
+    <p>Revision: 2021.Jan.11.1, Curated by Christopher&nbsp;Miller, Appalachian&nbsp;Center, Berea&nbsp;College and College&nbsp;of&nbsp;Communication&nbsp;&amp;&nbsp;Information, University&nbsp;of&nbsp;Kentucky,&nbsp;2020. |&nbsp;Contact:&nbsp;<a href="mailto:millerc@berea.edu">millerc@berea.edu</a>
     </p>
   </footer>
   </div>
@@ -239,7 +239,7 @@
           initIntBody = document.getElementById("interpbody").innerHTML,
           initIntSHLnk = null, //empty on home screen
           initIntLnk = null, //empty on home screen
-          clkIntSHID = "Map Info:",
+          clkIntSHID = "This Map Overlay Info:",
           clkIntSHbody = "Interpretation:",
           clkIntSHLnk = "Links:"
           ;
@@ -247,13 +247,13 @@
     const frostPt = L.latLng(37.5, -84), 
           frostLbl = "Appalachia as a People",
           frostIntCtr = L.latLng(36.714278, -82.544684),
-          frostIntZm = 6.0,
+          frostIntZm = 4.4,
           frostOverlayURL = "./images/FrostMap1899_rot.png",
           frostAttr = "Inset: Berea College",
           frostIntHd = "Appalachia as<br>&quot;Our Contemporary Ancestors&quot;",
           frostIntID = "<p>Title: <i>Mountain Region of the South</i><br>by William G. Frost, ca. 1899</p>",
-          frostIntBdy = "<p>In the summer of 1893, W.G. Frost, a college president and Greek scholar, rode on horseback into the Eastern Kentucky Mountains. He was looking for students but he entered a place that ignited his imagination. Frost was one of the earliest to distinguish between a <i>region called Appalachia</i> as distinct from the Appalachian Mountains.</p><p>Frost wrote extensively about &quot;Appalachian America&quot; as a region distinguished by the social and cultural characteristics of the people living there. He described Appalachian people as colonial Americans frozen in time by isolation and coined the term &quot;our contemporary ancestors&quot; to communicate this idea. Frost's writings were influential at creating the perception that Appalachia consisted of white, Christian, isolated, impoverished, peculiar mountain people. His stereotype ignored the true diversity of the region.</p>",
-          frostIntLnk = "<p><a href=https://berea.access.preservica.com/uncategorized/IO_76228f7a-b586-406b-89d0-d2e7f6ed9372/ target=_blank>Frost's article in <i>Atlantic Monthly</i>, March 1899, in the Berea College Archives</a></p>"
+          frostIntBdy = "<p>In the summer of 1893, W.G. Frost, a college president and Greek scholar, rode on horseback into the Eastern Kentucky Mountains. He was looking for students but he entered a place that ignited his imagination. Frost was one of the earliest to distinguish between a <i>region called Appalachia</i> as distinct from the Appalachian Mountains.</p><p>Frost wrote extensively about &quot;Appalachian America&quot; as a region distinguished by the social and cultural characteristics of the people living there. In his own words: &quot;Berea has . . . discovered the vastness of the great mountain area, backyards of eight states, which we have named Appalachian America. And Berea has discovered the mountaineer himself, as the child of isolation, not a degenerate but a survival. We have traced his pedigree to England and Scotland, registered his speech, which is Shakspearean and Saxon, appraised his arts of woodcraft and homespun, recovered the story of his loyal heroism in the Civil War. We have rescued him from oblivion and opprobrium, and introduced him to the world as &#39;our contemporary ancestor.&#39; &quot;(see link below) Frost's writings were influential at creating the perception that Appalachia consisted of white, Christian, isolated, impoverished, peculiar mountain people. His stereotype ignored the true diversity of the region.</p>",
+          frostIntLnk = "<p><a href=https://berea.access.preservica.com/uncategorized/IO_76228f7a-b586-406b-89d0-d2e7f6ed9372/ target=_blank>Frost's article in <i>Atlantic Monthly</i>, March 1899, in the Berea College Archives</a></p><p><a href=https://hdl.handle.net/2027/hvd.32044102880309?urlappend=%3Bseq=409 target=_blank>Frost's comments in <i>School and Home Education</i>, v.26, 1907, p.365</a></p>"
           ;
     
     const latcheePt = L.latLng(30.455, -84.253333), 
@@ -351,7 +351,7 @@
     
     // add the base tile shaded relief layer
     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}', {
-        attribution: 'Tiles: &copy; Esri &mdash; Source: Esri',
+        attribution: 'Basemap &copy; ESRI',
         maxZoom: 9, minZoom: 3
       }).addTo(map);
     
