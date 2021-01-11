@@ -139,7 +139,8 @@
     }
     
   .button {
-      border: 1px solid grey;
+      border: 2px solid grey;
+      border-radius: 2px;
       font-size: 24px;
       color: maroon;
       padding: 10 10 10;
@@ -174,10 +175,11 @@
   <!-- Creates the main content area consisting of left and right panes -->
   <section id="contentarea">
   <!-- This is the left pane where the map resides -->
+  <!-- The map zoom buttons are automatically created and positioned by leaflet in the id=maparea -->  
+  <!-- This div manually creates the show all button, the CSS above positions it -->
   <div id="showallbutton"><button class="button" id="showall">Home</button></div>
   <section id="maparea"></section>
   <!-- This is the right pane wher the interpretation resides -->
-  <!-- This is the show all button -->
   <section class="interp" id="interparea">
   <h3 id="interpHD">What&nbsp;&amp;&nbsp;Where is&nbsp;Appalachia?</h3>
   <h4 id="interpSHID"></h4>
@@ -351,7 +353,7 @@
     
     // add the base tile shaded relief layer
     L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}', {
-        attribution: 'Basemap &copy; ESRI',
+        attribution: 'Basemap &copy;ESRI',
         maxZoom: 9, minZoom: 3
       }).addTo(map);
     
