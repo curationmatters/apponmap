@@ -130,7 +130,7 @@
       padding: 8px;
   } 
     */
-    
+  /* Position and Style the Show All or Home Button */
   #showallbutton {
       position: relative;
       left: 50px;
@@ -140,11 +140,19 @@
     
   .button {
       border: 2px solid grey;
-      border-radius: 2px;
+      border-radius: 5px;
       font-size: 24px;
       color: maroon;
       padding: 10 10 10;
     }
+ 
+  /* Position and Style the instructions text box */
+  #instructionsbox {
+      position: relative;
+      left: 10px;
+      top: 159px;
+      z-index: 1000;
+    }  
     
   /* Style the footer */
   footer {
@@ -178,6 +186,8 @@
   <!-- The map zoom buttons are automatically created and positioned by leaflet in the id=maparea -->  
   <!-- This div manually creates the show all button, the CSS above positions it -->
   <div id="showallbutton"><button class="button" id="showall">Home</button></div>
+  <!-- This div manually creates the instructions box, the CSS above positions it -->    
+  <div id="instructionsbox"></div>  
   <section id="maparea"></section>
   <!-- This is the right pane wher the interpretation resides -->
   <section class="interp" id="interparea">
